@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Алгоритм АПЧХИ - Придумывание чокнутых хитрых идей</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #f72585;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --stage-1: #4cc9f0;
+            --stage-2: #4361ee;
+            --stage-3: #7209b7;
+            --heuristics-color: #f72585;
+            --success-color: #4caf50;
+            --warning-color: #ff9800;
+            --shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f7ff;
+            color: var(--dark-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Шапка */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 80px 0 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .acronym {
+            background-color: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 15px 30px;
+            display: inline-block;
+            margin: 25px 0;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        /* Основная схема алгоритма */
+        .algorithm-visualization {
+            position: relative;
+            margin: 50px auto 80px;
+            max-width: 1200px;
+            height: 600px;
+        }
+
+        .stage-circle {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            z-index: 10;
+        }
+
+        .stage-circle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .stage-circle.active {
+            transform: scale(1.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .stage-1 {
+            background: linear-gradient(135deg, var(--stage-1), #3a86ff);
+            top: 50px;
+            left: calc(50% - 100px);
+        }
+
+        .stage-2 {
+            background: linear-gradient(135deg, var(--stage-2), #560bad);
+            top: 300px;
+            left: 150px;
+        }
+
+        .stage-3 {
+            background: linear-gradient(135deg, var(--stage-3), #b5179e);
+            top: 300px;
+            right: 150px;
+        }
+
+        .stage-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .stage-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .cycle-arrows {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+        }
+
+        .arrow {
+            position: absolute;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: draw 3s forwards;
+        }
+
+        @keyframes draw {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .arrow-1 {
+            top: 180px;
+            left: 350px;
+            width: 200px;
+        }
+
+        .arrow-2 {
+            top: 380px;
+            left: 550px;
+            width: 200px;
+            transform: rotate(120deg);
+        }
+
+        .arrow-3 {
+            top: 180px;
+            left: 650px;
+            width: 200px;
+            transform: rotate(240deg);
+        }
+
+        /* Блок эвристических методов */
+        .heuristics-panel {
+            position: fixed;
+            right: -400px;
+            top: 0;
+            width: 400px;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: right 0.4s ease;
+            overflow-y: auto;
+            padding: 30px;
+        }
+
+        .heuristics-panel.open {
+            right: 0;
+        }
+
+        .heuristics-toggle {
+            position: fixed;
+            right: 20px;
+            top: 100px;
+            background: var(--heuristics-color);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(247, 37, 133, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .heuristics-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .heuristics-header {
+            color: var(--heuristics-color);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .heuristic-item {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-left: 4px solid var(--heuristics-color);
+        }
+
+        .heuristic-item:hover {
+            background-color: #f0f0f0;
+            transform: translateX(5px);
+        }
+
+        .heuristic-item.active {
+            background-color: #ffeef5;
+            border-left-color: #d9048c;
+        }
+
+        .heuristic-name {
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 5px;
+        }
+
+        .heuristic-desc {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Контент этапов */
+        .stage-content {
+            display: none;
+            background-color: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .stage-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .stage-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .stage-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .stage-content-title {
+            font-size: 2.2rem;
+            color: var(--dark-color);
+        }
+
+        .stage-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .content-card {
+            background-color: #f9f9f9;
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-title i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+        }
+
+        .nav-button {
+            display: flex;
+            align-items: center;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-button.prev {
+            background-color: #6c757d;
+        }
+
+        .nav-button.prev:hover {
+            background-color: #5a6268;
+        }
+
+        .nav-button i {
+            margin: 0 8px;
+        }
+
+        .method-details {
+            background-color: #f0f7ff;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .method-details.active {
+            display: block;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 1200px) {
+            .algorithm-visualization {
+                height: 500px;
+            }
+
+            .stage-circle {
+                width: 170px;
+                height: 170px;
+            }
+
+            .stage-1 {
+                top: 50px;
+                left: calc(50% - 85px);
+            }
+
+            .stage-2 {
+                top: 250px;
+                left: 100px;
+            }
+
+            .stage-3 {
+                top: 250px;
+                right: 100px;
+            }
+
+            .arrow-1 {
+                top: 150px;
+                left: 300px;
+            }
+
+            .arrow-2 {
+                top: 320px;
+                left: 450px;
+            }
+
+            .arrow-3 {
+                top: 150px;
+                left: 550px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .algorithm-visualization {
+                height: 800px;
+            }
+
+            .stage-circle {
+                position: relative;
+                margin: 30px auto;
+                top: auto;
+                left: auto;
+                right: auto;
+            }
+
+            .cycle-arrows {
+                display: none;
+            }
+
+            .heuristics-panel {
+                width: 350px;
+                right: -350px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .acronym {
+                font-size: 1.4rem;
+                padding: 12px 20px;
+            }
+
+            .tagline {
+                font-size: 1.1rem;
+            }
+
+            .stage-content {
+                padding: 25px;
+            }
+
+            .stage-content-title {
+                font-size: 1.8rem;
+            }
+
+            .heuristics-panel {
+                width: 100%;
+                right: -100%;
+            }
+
+            .heuristics-toggle {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #ddd;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px);
+        }
+
+        .btn i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1>Алгоритм АПЧХИ</h1>
+                <div class="acronym">Алгоритм Придумывания Чокнутых Хитрых Идей</div>
+                <p class="tagline">Системный подход к генерации креативных решений, состоящий из трех циклических этапов и набора эвристических методов</p>
+            </div>
+        </div>
+        <div>
+        <a href="System.html" class="btn">
+            <i class="fas fa-arrow-left"></i> Системное мышление
+        </a>
+      </div>
+    </header>
+
+    <!-- Визуализация алгоритма -->
+    <div class="container">
+        <div class="algorithm-visualization">
+            <!-- Этап 1 -->
+            <div class="stage-circle stage-1 active" data-stage="1">
+                <div class="stage-number">1</div>
+                <div class="stage-title">ИКР и "пять почему"</div>
+            </div>
+
+            <!-- Этап 2 -->
+            <div class="stage-circle stage-2" data-stage="2">
+                <div class="stage-number">2</div>
+                <div class="stage-title">Ресурсы</div>
+            </div>
+
+            <!-- Этап 3 -->
+            <div class="stage-circle stage-3" data-stage="3">
+                <div class="stage-number">3</div>
+                <div class="stage-title">Соединение и решение</div>
+            </div>
+
+            <!-- Стрелки цикла -->
+            <div class="cycle-arrows">
+                <svg class="arrow arrow-1" viewBox="0 0 100 100">
+                    <path d="M10,50 C40,10 60,10 90,50" fill="none" stroke="#4361ee" stroke-width="3" marker-end="url(#arrowhead)"/>
+                    <defs>
+                        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#4361ee"/>
+                        </marker>
+                    </defs>
+                </svg>
+
+                <svg class="arrow arrow-2" viewBox="0 0 100 100">
+                    <path d="M10,50 C40,10 60,10 90,50" fill="none" stroke="#7209b7" stroke-width="3" marker-end="url(#arrowhead2)"/>
+                    <defs>
+                        <marker id="arrowhead2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#7209b7"/>
+                        </marker>
+                    </defs>
+                </svg>
+
+                <svg class="arrow arrow-3" viewBox="0 0 100 100">
+                    <path d="M10,50 C40,10 60,10 90,50" fill="none" stroke="#4cc9f0" stroke-width="3" marker-end="url(#arrowhead3)"/>
+                    <defs>
+                        <marker id="arrowhead3" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#4cc9f0"/>
+                        </marker>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Контент этапов -->
+    <div class="container">
+        <!-- Этап 1 -->
+        <div class="stage-content active" id="stage-content-1">
+            <div class="stage-header">
+                <div class="stage-icon" style="background: linear-gradient(135deg, var(--stage-1), #3a86ff);">1</div>
+                <div>
+                    <h2 class="stage-content-title">ИКР и "пять почему"</h2>
+                    <p class="stage-subtitle">Формулирование задачи и выявление противоречий</p>
+                </div>
+            </div>
+
+            <p>На этом этапе мы определяем, какое решение нам действительно нужно, и находим глубинные причины проблемы.</p>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3 class="card-title"><i class="fas fa-bullseye"></i> Идеальный Конечный Результат (ИКР)</h3>
+                    <p>ИКР помогает сформулировать, каким должно быть идеальное решение без учета ограничений. Это позволяет увидеть, к чему нужно стремиться и какие функции должна выполнять система.</p>
+                    <ul>
+                        <li>Система сама выполняет нужную функцию</li>
+                        <li>Ничего не усложняется и не ухудшается</li>
+                        <li>Не появляются новые проблемы</li>
+                    </ul>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="card-title"><i class="fas fa-question-circle"></i> Метод "5 почему"</h3>
+                    <p>Техника для поиска корневой причины проблемы путем последовательного задавания вопроса "почему?" (обычно 5 раз). Каждый ответ становится основой для следующего вопроса.</p>
+                    <ol>
+                        <li>Почему возникла проблема?</li>
+                        <li>Почему это произошло?</li>
+                        <li>Почему это стало возможным?</li>
+                        <li>Почему не было предотвращено?</li>
+                        <li>Почему система так устроена?</li>
+                    </ol>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="card-title"><i class="fas fa-exclamation-triangle"></i> Выявление противоречий</h3>
+                    <p>После формулирования ИКР и применения "5 почему" мы выявляем противоречия в системе — ситуации, когда улучшение одного параметра ухудшает другой.</p>
+                    <p>Противоречия — источник инновационных решений, так как их разрешение часто приводит к прорывным идеям.</p>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="nav-button prev" data-next-stage="3">
+                    <i class="fas fa-arrow-left"></i> К этапу 3
+                </button>
+                <button class="nav-button" data-next-stage="2">
+                    К этапу 2 <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Этап 2 -->
+        <div class="stage-content" id="stage-content-2">
+            <div class="stage-header">
+                <div class="stage-icon" style="background: linear-gradient(135deg, var(--stage-2), #560bad);">2</div>
+                <div>
+                    <h2 class="stage-content-title">Ресурсы</h2>
+                    <p class="stage-subtitle">Поиск и анализ ресурсов системы</p>
+                </div>
+            </div>
+
+            <p>На этом этапе мы ищем ресурсы внутри самой системы, которые могут выполнять нужные функции, и анализируем, как превратить недостатки в преимущества.</p>
+            <a href="Resurse.html">Подробнее о ресукрсах</a>
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3 class="card-title"><i class="fas fa-search"></i> Классификация ресурсов</h3>
+                    <p>Ресурсы берутся из самой системы и ее окружения. В идеале нужную функцию должна выполнять часть самой системы.</p>
+                    <ul>
+                        <li><strong>Вещественные</strong>: материалы, детали, компоненты</li>
+                        <li><strong>Энергетические</strong>: различные виды энергии</li>
+                        <li><strong>Информационные</strong>: данные, сигналы, знания</li>
+                        <li><strong>Временные</strong>: время до/после события, параллельные процессы</li>
+                        <li><strong>Пространственные</strong>: место, форма, объем</li>
+                    </ul>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="card-title"><i class="fas fa-sync-alt"></i> Превращение вредного в полезное</h3>
+                    <p>Анализ того, что ухудшает систему, и поиск способов использовать это на пользу.</p>
+                    <p>Примеры:</p>
+                    <ul>
+                        <li>Шум → источник энергии или сигнал</li>
+                        <li>Трение → способ соединения или нагрев</li>
+                        <li>Отходы → сырье для другого процесса</li>
+                    </ul>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="card-title"><i class="fas fa-project-diagram"></i> Системный анализ</h3>
+                    <p>Анализ объектов системы и связей между ними для выявления скрытых ресурсов и возможностей.</p>
+                    <p>Используется как классическая классификация ТРИЗ, так и классификация на основе "Психологии влияния" Роберта Чалдини.</p>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="nav-button prev" data-next-stage="1">
+                    <i class="fas fa-arrow-left"></i> К этапу 1
+                </button>
+                <button class="nav-button" data-next-stage="3">
+                    К этапу 3 <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Этап 3 -->
+        <div class="stage-content" id="stage-content-3">
+            <div class="stage-header">
+                <div class="stage-icon" style="background: linear-gradient(135deg, var(--stage-3), #b5179e);">3</div>
+                <div>
+                    <h2 class="stage-content-title">Соединение и нахождение решения</h2>
+                    <p class="stage-subtitle">Поиск решений на пересечении ресурсов и ИКР</p>
+                </div>
+            </div>
+
+            <p>На этом этапе мы находим решения в местах пересечения ресурсов системы и сформулированного Идеального Конечного Результата.</p>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3 class="card-title"><i class="fas fa-crosshairs"></i> Поиск пересечений</h3>
+                    <p>Решение находится там, где ресурсы системы могут обеспечить выполнение функций, определенных в ИКР.</p>
+                    <p>Методика:</p>
+                    <ol>
+                        <li>Сопоставить каждый ресурс с требованием ИКР</li>
+                        <li>Найти ресурсы, которые могут выполнять нужные функции</li>
+                        <li>Проверить, не создают ли решения новых противоречий</li>
+                    </ol>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="card-title"><i class="fas fa-lightbulb"></i> Применение эвристик</h3>
+                    <p>На каждом этапе можно применять эвристические методы для генерации идей. Эти методы помогают выйти за рамки привычного мышления.</p>
+                    <p>Эвристики доступны в боковой панели справа. Нажмите на кнопку "Эвристики", чтобы открыть панель с методами.</p>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="card-title"><i class="fas fa-recycle"></i> Цикличность алгоритма</h3>
+                    <p>АПЧХИ — циклический алгоритм. Если найденное решение не удовлетворяет требованиям, можно вернуться к предыдущим этапам:</p>
+                    <ul>
+                        <li>Уточнить ИКР</li>
+                        <li>Найти дополнительные ресурсы</li>
+                        <li>Применить другие эвристики</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="nav-button prev" data-next-stage="2">
+                    <i class="fas fa-arrow-left"></i> К этапу 2
+                </button>
+                <button class="nav-button" data-next-stage="1">
+                    К этапу 1 <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Панель эвристических методов -->
+    <div class="heuristics-toggle" id="heuristicsToggle">
+        <i class="fas fa-lightbulb"></i>
+    </div>
+
+    <div class="heuristics-panel" id="heuristicsPanel">
+        <h2 class="heuristics-header"><i class="fas fa-magic"></i> Эвристические методы</h2>
+
+        <div class="heuristic-item active" data-heuristic="1">
+            <div class="heuristic-name">1. ММЧ (Метод Маленьких Человечков)</div>
+            <div class="heuristic-desc">Генерация идей, представляя систему в виде маленьких человесков, каждый из которых выполняет свою функцию.</div>
+        </div>
+
+        <div class="heuristic-item" data-heuristic="2">
+            <div class="heuristic-name">2. РВС (Размер, Время, Стоимость)</div>
+            <div class="heuristic-desc">Мысленное изменение параметров системы: увеличение/уменьшение размеров, ускорение/замедление времени, увеличение/уменьшение стоимости.</div>
+        </div>
+
+        <div class="heuristic-item" data-heuristic="3">
+            <div class="heuristic-name">3. 9 экранов</div>
+            <div class="heuristic-desc">Анализ системы в трех временных измерениях (прошлое, настоящее, будущее) и на трех уровнях (надсистема, система, подсистема).</div>
+        </div>
+
+        <div class="heuristic-item" data-heuristic="4">
+            <div class="heuristic-name">4. Разделяй и властвуй</div>
+            <div class="heuristic-desc">Разделение системы на части, решение проблемы для каждой части отдельно, затем объединение решений.</div>
+        </div>
+
+        <div class="heuristic-item" data-heuristic="5">
+            <div class="heuristic-name">5. Приумножение</div>
+            <div class="heuristic-desc">Увеличение количества элементов системы, их функций или связей между ними.</div>
+        </div>
+
+        <div class="heuristic-item" data-heuristic="6">
+            <div class="heuristic-name">6. Инверсия</div>
+            <div class="heuristic-desc">Рассмотрение обратной задачи, изменение направления процесса или функции на противоположное.</div>
+        </div>
+
+        <div class="heuristic-item" data-heuristic="7">
+            <div class="heuristic-name">7. Метафора</div>
+            <div class="heuristic-desc">Использование аналогий из других областей для поиска неочевидных решений.</div>
+        </div>
+
+        <div class="heuristic-item" data-heuristic="8">
+            <div class="heuristic-name">8. Гипербола</div>
+            <div class="heuristic-desc">Сильное преувеличение или преуменьшение характеристик системы для выявления скрытых возможностей.</div>
+        </div>
+
+        <div class="heuristic-item" data-heuristic="9">
+            <div class="heuristic-name">9. Скрытый резерв</div>
+            <div class="heuristic-desc">Поиск неиспользуемых возможностей в системе, которые уже существуют, но не задействованы.</div>
+        </div>
+
+        <!-- Детальное описание метода -->
+        <div class="method-details active" id="method-details-1">
+            <h3>ММЧ (Метод Маленьких Человечков)</h3>
+            <p>Генерация идей, представляя систему в виде маленьких человесков, каждый из которых выполняет свою функцию.</p>
+            <p><strong>Основные правила:</strong></p>
+            <ul>
+                <li>Позволяет:</li>
+                <li>Быстро и удобно проанализировать систему </li>
+                <li>Понять где проблема, даже если она находится не в объектах системы а в связях</li>
+                <li>Удобно позволяет предугадывать, как поменяется система при изменении её части</li>
+            </ul>
+        </div>
+
+        <div class="method-details" id="method-details-2">
+            <h3>РВС (Размер, Время, Стоимость)</h3>
+            <p>Мысленный эксперимент по изменению ключевых параметров системы для выявления новых возможностей.</p>
+            <p><strong>Примеры вопросов:</strong></p>
+            <ul>
+                <li>Что если система будет в 100 раз больше/меньше?</li>
+                <li>Что если процесс займет секунду/год?</li>
+                <li>Что если стоимость будет нулевой/бесконечной?</li>
+            </ul>
+        </div>
+
+        <div class="method-details" id="method-details-3">
+            <h3>9 экранов</h3>
+            <p>Системный оператор для анализа проблемы в различных измерениях. Состоит из 9 ячеек (3x3):</p>
+            <p><strong>Вертикаль:</strong> Надсистема → Система → Подсистема</p>
+            <p><strong>Горизонталь:</strong> Прошлое → Настоящее → Будущее</p>
+            <p>Позволяет увидеть систему в развитии и в контексте окружения.</p>
+        </div>
+
+        <div class="method-details" id="method-details-4">
+            <h3>Разделяй и властвуй</h3>
+            <p>Декомпозиция сложной проблемы на более простые части, которые решаются отдельно, с последующей интеграцией решений.</p>
+            <p><strong>Применение:</strong></p>
+            <ul>
+                <li>Разделить систему на функциональные модули</li>
+                <li>Решить проблему для каждого модуля</li>
+                <li>Объединить решения, устранив противоречия между модулями</li>
+            </ul>
+        </div>
+
+        <div class="method-details" id="method-details-5">
+            <h3>Приумножение</h3>
+            <p>Увеличение количества элементов, функций или связей в системе для усиления полезного эффекта или нейтрализации вредного.</p>
+            <p><strong>Примеры:</strong></p>
+            <ul>
+                <li>Дублирование критических элементов для надежности</li>
+                <li>Добавление дополнительных функций к существующим элементам</li>
+                <li>Создание резервных связей в системе</li>
+            </ul>
+        </div>
+
+        <div class="method-details" id="method-details-6">
+            <h3>Инверсия</h3>
+            <p>Рассмотрение обратной задачи или изменение направления процесса/функции на противоположное.</p>
+            <p><strong>Примеры вопросов:</strong></p>
+            <ul>
+                <li>Что если нагревать вместо охлаждать?</li>
+                <li>Что если перемещать деталь вместо инструмента?</li>
+                <li>Что если проблема — это решение?</li>
+            </ul>
+        </div>
+
+        <div class="method-details" id="method-details-7">
+            <h3>Метафора</h3>
+            <p>Использование аналогий из других областей знания, природы или техники для поиска нестандартных решений.</p>
+            <p><strong>Примеры:</strong></p>
+            <ul>
+                <li>Как решает подобную проблему природа (бионика)?</li>
+                <li>Как эта проблема решена в другой отрасли?</li>
+                <li>На что похожа эта система?</li>
+            </ul>
+        </div>
+
+        <div class="method-details" id="method-details-8">
+            <h3>Гипербола</h3>
+            <p>Сильное преувеличение или преуменьшение характеристик системы для выявления скрытых возможностей и пределов.</p>
+            <p><strong>Примеры:</strong></p>
+            <ul>
+                <li>Что если вес устройства должен быть 0 грамм?</li>
+                <li>Что если устройство должно работать 1000 лет?</li>
+                <li>Что если размер должен быть с молекулу?</li>
+            </ul>
+        </div>
+
+        <div class="method-details" id="method-details-9">
+            <h3>Скрытый резерв</h3>
+            <p>Поиск неиспользуемых возможностей в системе, которые уже существуют, но не задействованы для решения проблемы.</p>
+            <p><strong>Где искать:</strong></p>
+            <ul>
+                <li>Неиспользуемые функции существующих элементов</li>
+                <li>Побочные эффекты, которые можно превратить в основной эффект</li>
+                <li>Пустое пространство, свободное время, избыточные ресурсы</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Подвал -->
+    <div class="container">
+        <div class="footer-note">
+            <p>Алгоритм АПЧХИ — инструмент для системного поиска креативных решений. Цикличность алгоритма позволяет возвращаться к предыдущим этапам для уточнения и улучшения решений.</p>
+            <p>Используйте эвристические методы на любом этапе для выхода за рамки привычного мышления.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Элементы DOM
+            const stageCircles = document.querySelectorAll('.stage-circle');
+            const stageContents = document.querySelectorAll('.stage-content');
+            const navButtons = document.querySelectorAll('.nav-button');
+            const heuristicsToggle = document.getElementById('heuristicsToggle');
+            const heuristicsPanel = document.getElementById('heuristicsPanel');
+            const heuristicItems = document.querySelectorAll('.heuristic-item');
+            const methodDetails = document.querySelectorAll('.method-details');
+
+            // Активация этапа
+            function activateStage(stageNumber) {
+                // Деактивируем все круги
+                stageCircles.forEach(circle => {
+                    circle.classList.remove('active');
+                });
+
+                // Активируем выбранный круг
+                document.querySelector(`.stage-circle[data-stage="${stageNumber}"]`).classList.add('active');
+
+                // Деактивируем весь контент
+                stageContents.forEach(content => {
+                    content.classList.remove('active');
+                });
+
+                // Активируем выбранный контент
+                document.getElementById(`stage-content-${stageNumber}`).classList.add('active');
+            }
+
+            // Навигация по кругам
+            stageCircles.forEach(circle => {
+                circle.addEventListener('click', function() {
+                    const stageNumber = this.getAttribute('data-stage');
+                    activateStage(stageNumber);
+                });
+            });
+
+            // Навигация по кнопкам
+            navButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const nextStage = this.getAttribute('data-next-stage');
+                    activateStage(nextStage);
+                });
+            });
+
+            // Панель эвристик
+            heuristicsToggle.addEventListener('click', function() {
+                heuristicsPanel.classList.toggle('open');
+            });
+
+            // Выбор эвристики
+            heuristicItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Деактивируем все эвристики
+                    heuristicItems.forEach(i => i.classList.remove('active'));
+                    methodDetails.forEach(d => d.classList.remove('active'));
+
+                    // Активируем выбранную эвристику
+                    this.classList.add('active');
+
+                    // Показываем детали метода
+                    const heuristicId = this.getAttribute('data-heuristic');
+                    document.getElementById(`method-details-${heuristicId}`).classList.add('active');
+                });
+            });
+
+            // Закрытие панели эвристик при клике вне ее
+            document.addEventListener('click', function(event) {
+                if (!heuristicsPanel.contains(event.target) &&
+                    !heuristicsToggle.contains(event.target) &&
+                    heuristicsPanel.classList.contains('open')) {
+                    heuristicsPanel.classList.remove('open');
+                }
+            });
+
+            // Анимация стрелок
+            const arrows = document.querySelectorAll('.arrow');
+            arrows.forEach(arrow => {
+                const path = arrow.querySelector('path');
+                const length = path.getTotalLength();
+                path.style.strokeDasharray = length;
+                path.style.strokeDashoffset = length;
+
+                // Запуск анимации с задержкой
+                setTimeout(() => {
+                    path.style.transition = 'stroke-dashoffset 3s ease-in-out';
+                    path.style.strokeDashoffset = '0';
+                }, 500);
+            });
+
+            // Имитация работы алгоритма - автоматическое переключение этапов для демонстрации цикличности
+            let currentDemoStage = 1;
+            /*
+            setInterval(() => {
+                currentDemoStage = currentDemoStage < 3 ? currentDemoStage + 1 : 1;
+                activateStage(currentDemoStage);
+            }, 10000);
+            */
+        });
+    </script>
+</body>
+</html>

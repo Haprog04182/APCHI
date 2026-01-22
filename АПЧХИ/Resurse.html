@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Энциклопедия психологических ресурсов</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --triz-color: #3498db;
+            --emotion-color: #e74c3c;
+            --influence-color: #27ae60;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --gray-color: #95a5a6;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--dark-color), #34495e);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 1rem;
+        }
+
+        .logo i {
+            font-size: 2.8rem;
+            color: var(--light-color);
+        }
+
+        .logo h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            max-width: 900px;
+            margin: 0 auto 1.5rem;
+            opacity: 0.9;
+        }
+
+        .domain-tags {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 1.5rem;
+        }
+
+        .tag {
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tag-triz {
+            background-color: var(--triz-color);
+        }
+
+        .tag-emotion {
+            background-color: var(--emotion-color);
+        }
+
+        .tag-influence {
+            background-color: var(--influence-color);
+        }
+
+        /* Navigation */
+        nav {
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin: 0;
+        }
+
+        .nav-links a {
+            display: block;
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--triz-color);
+        }
+
+        .nav-links a.active {
+            color: var(--triz-color);
+        }
+
+        .nav-links a.active:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background-color: var(--triz-color);
+            bottom: 0;
+            left: 0;
+        }
+
+        .view-toggle {
+            display: flex;
+            background-color: #f1f2f6;
+            border-radius: 8px;
+            padding: 4px;
+        }
+
+        .view-btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--gray-color);
+            transition: all 0.3s;
+        }
+
+        .view-btn.active {
+            background-color: white;
+            color: var(--dark-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Main content */
+        .main-content {
+            padding: 3rem 0;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid;
+        }
+
+        .section-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            color: var(--dark-color);
+        }
+
+        .triz-section .section-icon {
+            background-color: var(--triz-color);
+        }
+
+        .triz-section .section-header {
+            border-color: var(--triz-color);
+        }
+
+        .emotion-section .section-icon {
+            background-color: var(--emotion-color);
+        }
+
+        .emotion-section .section-header {
+            border-color: var(--emotion-color);
+        }
+
+        .influence-section .section-icon {
+            background-color: var(--influence-color);
+        }
+
+        .influence-section .section-header {
+            border-color: var(--influence-color);
+        }
+
+        /* Grid layout */
+        .grid-view {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .list-view .resource-category {
+            margin-bottom: 2rem;
+        }
+
+        .list-view .category-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        /* Cards */
+        .resource-category {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.8rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .resource-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.2rem;
+        }
+
+        .category-badge {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: white;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .category-title {
+            font-size: 1.4rem;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .category-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .resource-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .resource-item {
+            padding: 0.8rem;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid;
+        }
+
+        .triz-item {
+            border-left-color: var(--triz-color);
+        }
+
+        .emotion-item {
+            border-left-color: var(--emotion-color);
+        }
+
+        .influence-item {
+            border-left-color: var(--influence-color);
+        }
+
+        .resource-item h4 {
+            color: var(--dark-color);
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            font-size: 1.05rem;
+        }
+
+        .resource-item h4 i {
+            margin-right: 8px;
+        }
+
+        .resource-item p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Examples and notes */
+        .example-box {
+            background-color: #e8f4fc;
+            border-left: 4px solid var(--triz-color);
+            padding: 1rem;
+            margin-top: 1.2rem;
+            border-radius: 8px;
+            font-style: italic;
+        }
+
+        .note-box {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffb300;
+            padding: 1rem;
+            margin-top: 1.2rem;
+            border-radius: 8px;
+        }
+
+        /* Principles section */
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .principle-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-top: 5px solid;
+        }
+
+        .principle-card.triz {
+            border-top-color: var(--triz-color);
+        }
+
+        .principle-card.emotion {
+            border-top-color: var(--emotion-color);
+        }
+
+        .principle-card.influence {
+            border-top-color: var(--influence-color);
+        }
+
+        .principle-card h4 {
+            font-size: 1.2rem;
+            color: var(--dark-color);
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .principle-card h4 i {
+            margin-right: 10px;
+        }
+
+        /* Comparison table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .comparison-table th {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 1.2rem;
+            text-align: left;
+        }
+
+        .comparison-table td {
+            padding: 1rem 1.2rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .domain-cell {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .triz-cell {
+            color: var(--triz-color);
+        }
+
+        .emotion-cell {
+            color: var(--emotion-color);
+        }
+
+        .influence-cell {
+            color: var(--influence-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            color: var(--light-color);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background-color: var(--triz-color);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--triz-color);
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .grid-view {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links a {
+                padding: 0.8rem 1rem;
+            }
+
+            .grid-view {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .section-icon {
+                margin-right: 0;
+            }
+
+            .logo h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--triz-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            z-index: 100;
+            transition: all 0.3s;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+        }
+
+        /* Color highlights */
+        .highlight-triz {
+            color: var(--triz-color);
+            font-weight: 600;
+        }
+
+        .highlight-emotion {
+            color: var(--emotion-color);
+            font-weight: 600;
+        }
+
+        .highlight-influence {
+            color: var(--influence-color);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-brain"></i>
+                <h1>Энциклопедия психологических ресурсов</h1>
+            </div>
+            <p class="subtitle">Полный обзор ресурсов для решения задач, управления эмоциями и эффективного влияния. Интеграция подходов ТРИЗ, психологии эмоций и принципов влияния Чалдини.</p>
+
+            <div class="domain-tags">
+                <div class="tag tag-triz">
+                    <i class="fas fa-lightbulb"></i>
+                    Ресурсы ТРИЗ
+                </div>
+                <div class="tag tag-emotion">
+                    <i class="fas fa-heart"></i>
+                    Эмоциональные ресурсы
+                </div>
+                <div class="tag tag-influence">
+                    <i class="fas fa-chart-line"></i>
+                    Ресурсы влияния
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <ul class="nav-links">
+                <li><a href="#triz" class="active">ТРИЗ</a></li>
+                <li><a href="#emotion">Эмоции</a></li>
+                <li><a href="#influence">Влияние</a></li>
+                <li><a href="#principles">Принципы</a></li>
+                <li><a href="#comparison">Сравнение</a></li>
+            </ul>
+
+            <div class="view-toggle">
+                <button class="view-btn active" id="gridViewBtn">
+                    <i class="fas fa-th-large"></i> Сетка
+                </button>
+                <button class="view-btn" id="listViewBtn">
+                    <i class="fas fa-list"></i> Список
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container main-content">
+        <!-- TРИЗ Section -->
+        <section id="triz" class="section triz-section fade-in">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h2>Ресурсы по ТРИЗ</h2>
+            </div>
+
+            <div class="grid-view" id="trizContent">
+                <!-- По природе ресурса -->
+                <div class="resource-category">
+                    <div class="category-header">
+                        <div class="category-badge" style="background-color: var(--triz-color);">
+                            <i class="fas fa-atom"></i>
+                        </div>
+                        <div>
+                            <h3 class="category-title">По природе ресурса</h3>
+                            <p class="category-description">Базовая классификация Альтшуллера</p>
+                        </div>
+                    </div>
+
+                    <div class="resource-list">
+                        <div class="resource-item triz-item">
+                            <h4><i class="fas fa-cube"></i> Вещественно-полевые</h4>
+                            <p>Материалы, энергия, их комбинации (ВПР)</p>
+                        </div>
+                        <div class="resource-item triz-item">
+                            <h4><i class="fas fa-expand-arrows-alt"></i> Пространственные</h4>
+                            <p>Пустое место, полости, обратная сторона</p>
+                        </div>
+                        <div class="resource-item triz-item">
+                            <h4><i class="fas fa-clock"></i> Временные</h4>
+                            <p>Время до/после процесса, паузы, ритмы</p>
+                        </div>
+                        <div class="resource-item triz-item">
+                            <h4><i class="fas fa-info-circle"></i> Информационные</h4>
+                            <p>Сигналы, данные, физические эффекты</p>
+                        </div>
+                        <div class="resource-item triz-item">
+                            <h4><i class="fas fa-cogs"></i> Функциональные</h4>
+                            <p>Способность элементов выполнять дополнительные функции</p>
+                        </div>
+                    </div>
+
+                    <div class="example-box">
+                        <strong>Пример:</strong> Использование внутреннего пространства детали для увеличения прочности без увеличения размеров.
+                    </div>
+                </div>
+
+                <!-- По доступности -->
+                <div class="resource-category">
+                    <div class="category-header">
+                        <div class="category-badge" style="background-color: var(--triz-color);">
+                            <i class="fas fa-signal"></i>
+                        </div>
+                        <div>
+                            <h3 class="category-title">По степени доступности</h3>
+                            <p class="category-description">Приоритетность использования ресурсов</p>
+                        </div>
+                    </div>
+
+                    <div class="resource-list">
+                        <div class="resource-item triz-item">
+                            <h4><i class="fas fa-home"></i> Внутренние</h4>
+                            <p>В системе или ее окружении (предпочтительные)</p>
+                        </div>
+                        <div class="resource-item triz-item">
+                            <h4><i class="fas fa-external-link-alt"></i> Внешние</h4>
+                            <p>Требуют привнесения извне (увеличивают сложность)</p>
+                        </div>
+                        <div class="resource-item triz-item">
+                            <h4><i class="fas fa-exchange-alt"></i> Приведенные</h4>
+                            <p>Требуют серьезного преобразования</p>
+                        </div>
+                        <div class="resource-item triz-item">
+                            <h4><i class="fas fa-recycle"></i> Производные</h4>
+                            <p>Побочные продукты, отходы, вредные эффекты</p>
+                        </div>
+                    </div>
+
+                    <div class="example-box">
+                        <strong>Пример:</strong> Использование тепла от двигателя для обогрева салона (внутренний ресурс).
+                    </div>
+                </div>
+
+                <!-- По отношению к системе -->
+                <div class="resource-category">
+                    <div class="category-header">
+                        <div class="category-badge" style="background-color: var(--triz-color);">
+                            <i class="fas fa-sitemap"></i>
+                        </div>
+                        <div>
+                            <h3 class="category-title">По отношению к системе</h3>
+                            <p class="category-description">Контекст расположения ресурса</p>
+                        </div>
+                    </div>
+
+                    <div class="resource-list">
+                        <div class="resource-item triz-item">
+                            <h4><i class="fas fa-cube"></i> Системы</h4>
+                            <p>Части системы и связи между ними</p>
+                        </div>
+                        <div class="resource-item triz-item">
+                            <h4><i class="fas fa-layer-group"></i> Надсистемы</h4>
+                            <p>Окружающая среда, инфраструктура</p>
+                        </div>
+                        <div class="resource-item triz-item">
+                            <h4><i class="fas fa-project-diagram"></i> Соседних систем</h4>
+                            <p>Другие системы, работающие рядом</p>
+                        </div>
+                        <div class="resource-item triz-item">
+                            <h4><i class="fas fa-skull-crossbones"></i> Антисистемы</h4>
+                            <p>То, что обычно вредит (пыль, влага, конкуренты)</p>
+                        </div>
+                    </div>
+
+                    <div class="note-box">
+                        <strong>Ключевой принцип:</strong> Заставить "вредный" фактор приносить пользу.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Эмоции Section -->
+        <section id="emotion" class="section emotion-section fade-in">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h2>Эмоциональные ресурсы</h2>
+            </div>
+
+            <div class="grid-view" id="emotionContent">
+                <!-- По природе ресурса -->
+                <div class="resource-category">
+                    <div class="category-header">
+                        <div class="category-badge" style="background-color: var(--emotion-color);">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div>
+                            <h3 class="category-title">По природе ресурса</h3>
+                            <p class="category-description">Классификация эмоциональных и когнитивных ресурсов</p>
+                        </div>
+                    </div>
+
+                    <div class="resource-list">
+                        <div class="resource-item emotion-item">
+                            <h4><i class="fas fa-smile"></i> Эмоциональные</h4>
+                            <p>Базовые эмоции, комплексные состояния, регуляторы</p>
+                        </div>
+                        <div class="resource-item emotion-item">
+                            <h4><i class="fas fa-lightbulb"></i> Когнитивные</h4>
+                            <p>Внимание, память, мышление, ментальные модели</p>
+                        </div>
+                        <div class="resource-item emotion-item">
+                            <h4><i class="fas fa-link"></i> Интегративные</h4>
+                            <p>Эмоциональный интеллект, рефлексия, метапознание</p>
+                        </div>
+                    </div>
+
+                    <div class="example-box">
+                        <strong>Цепочка эмоций:</strong> Раздражение → Гнев → Ярость → Раскаяние (каузальная цепочка).
+                    </div>
+                </div>
+
+                <!-- По доступности -->
+                <div class="resource-category">
+                    <div class="category-header">
+                        <div class="category-badge" style="background-color: var(--emotion-color);">
+                            <i class="fas fa-signal"></i>
+                        </div>
+                        <div>
+                            <h3 class="category-title">По доступности</h3>
+                            <p class="category-description">Источники эмоционально-когнитивных ресурсов</p>
+                        </div>
+                    </div>
+
+                    <div class="resource-list">
+                        <div class="resource-item emotion-item">
+                            <h4><i class="fas fa-user"></i> Внутренние</h4>
+                            <p>Врожденные способности, приобретенные навыки, черты характера</p>
+                        </div>
+                        <div class="resource-item emotion-item">
+                            <h4><i class="fas fa-users"></i> Внешние</h4>
+                            <p>Социальная поддержка, информация, культурный контекст</p>
+                        </div>
+                        <div class="resource-item emotion-item">
+                            <h4><i class="fas fa-exchange-alt"></i> Приведенные</h4>
+                            <p>Стресс в энергию, негативный опыт в мудрость</p>
+                        </div>
+                        <div class="resource-item emotion-item">
+                            <h4><i class="fas fa-recycle"></i> Производные</h4>
+                            <p>Усталость как сигнал, сомнения как фильтр</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Цепочки эмоций -->
+                <div class="resource-category">
+                    <div class="category-header">
+                        <div class="category-badge" style="background-color: var(--emotion-color);">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <div>
+                            <h3 class="category-title">Цепочки эмоций</h3>
+                            <p class="category-description">Последовательности взаимосвязанных эмоций</p>
+                        </div>
+                    </div>
+
+                    <div class="resource-list">
+                        <div class="resource-item emotion-item">
+                            <h4><i class="fas fa-cogs"></i> Каузальные</h4>
+                            <p>Причинно-следственные: Раздражение → Гнев → Ярость → Раскаяние</p>
+                        </div>
+                        <div class="resource-item emotion-item">
+                            <h4><i class="fas fa-assistive-listening-systems"></i> Ассоциативные</h4>
+                            <p>Запах → Воспоминание → Ностальгия → Грусть</p>
+                        </div>
+                        <div class="resource-item emotion-item">
+                            <h4><i class="fas fa-sync-alt"></i> Трансформационные</h4>
+                            <p>Разочарование → Признание → Анализ → Извлечение урока</p>
+                        </div>
+                    </div>
+
+                    <div class="note-box">
+                        <strong>Закон эмоциональной инерции:</strong> Эмоция стремится сохранять направление и интенсивность.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Влияние Section -->
+        <section id="influence" class="section influence-section fade-in">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h2>Ресурсы влияния (Чалдини)</h2>
+            </div>
+
+            <div class="grid-view" id="influenceContent">
+                <!-- Основные принципы -->
+                <div class="resource-category">
+                    <div class="category-header">
+                        <div class="category-badge" style="background-color: var(--influence-color);">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div>
+                            <h3 class="category-title">Основные принципы</h3>
+                            <p class="category-description">6 ключевых принципов влияния по Чалдини</p>
+                        </div>
+                    </div>
+
+                    <div class="resource-list">
+                        <div class="resource-item influence-item">
+                            <h4><i class="fas fa-handshake"></i> Взаимность</h4>
+                            <p>Стремление отвечать взаимностью на полученные блага</p>
+                        </div>
+                        <div class="resource-item influence-item">
+                            <h4><i class="fas fa-clipboard-check"></i> Последовательность</h4>
+                            <p>Стремление быть последовательным в словах и действиях</p>
+                        </div>
+                        <div class="resource-item influence-item">
+                            <h4><i class="fas fa-users"></i> Социальное доказательство</h4>
+                            <p>Ориентация на поведение других в неопределенных ситуациях</p>
+                        </div>
+                        <div class="resource-item influence-item">
+                            <h4><i class="fas fa-heart"></i> Симпатия</h4>
+                            <p>Согласие с теми, кто нравится</p>
+                        </div>
+                        <div class="resource-item influence-item">
+                            <h4><i class="fas fa-crown"></i> Авторитет</h4>
+                            <p>Подчинение авторитетным фигурам</p>
+                        </div>
+                        <div class="resource-item influence-item">
+                            <h4><i class="fas fa-hourglass-half"></i> Дефицит</h4>
+                            <p>Большая ценность менее доступного</p>
+                        </div>
+                    </div>
+
+                    <div class="example-box">
+                        <strong>Пример взаимности:</strong> Бесплатные образцы увеличивают вероятность покупки.
+                    </div>
+                </div>
+
+                <!-- Тактические ресурсы -->
+                <div class="resource-category">
+                    <div class="category-header">
+                        <div class="category-badge" style="background-color: var(--influence-color);">
+                            <i class="fas fa-chess"></i>
+                        </div>
+                        <div>
+                            <h3 class="category-title">Тактические ресурсы</h3>
+                            <p class="category-description">Конкретные техники применения</p>
+                        </div>
+                    </div>
+
+                    <div class="resource-list">
+                        <div class="resource-item influence-item">
+                            <h4><i class="fas fa-door-open"></i> "Нога в двери"</h4>
+                            <p>Маленькая просьба → согласие → большая просьба</p>
+                        </div>
+                        <div class="resource-item influence-item">
+                            <h4><i class="fas fa-door-closed"></i> "Дверь в лицо"</h4>
+                            <p>Большая просьба → отказ → меньшая просьба</p>
+                        </div>
+                        <div class="resource-item influence-item">
+                            <h4><i class="fas fa-exclamation-circle"></i> Создание дефицита</h4>
+                            <p>"Только 3 места осталось", "Только сегодня"</p>
+                        </div>
+                        <div class="resource-item influence-item">
+                            <h4><i class="fas fa-user-tie"></i> Демонстрация авторитета</h4>
+                            <p>Символы, титулы, рекомендации авторитетов</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Этичность применения -->
+                <div class="resource-category">
+                    <div class="category-header">
+                        <div class="category-badge" style="background-color: var(--influence-color);">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <div>
+                            <h3 class="category-title">Этичность применения</h3>
+                            <p class="category-description">Критерии этичного использования</p>
+                        </div>
+                    </div>
+
+                    <div class="resource-list">
+                        <div class="resource-item influence-item">
+                            <h4><i class="fas fa-eye"></i> Прозрачность намерений</h4>
+                            <p>Честное информирование о целях влияния</p>
+                        </div>
+                        <div class="resource-item influence-item">
+                            <h4><i class="fas fa-handshake"></i> Взаимная выгода</h4>
+                            <p>Поиск решений, полезных для всех сторон</p>
+                        </div>
+                        <div class="resource-item influence-item">
+                            <h4><i class="fas fa-history"></i> Долгосрочная перспектива</h4>
+                            <p>Отношения важнее разовой выгоды</p>
+                        </div>
+                        <div class="resource-item influence-item">
+                            <h4><i class="fas fa-hands-helping"></i> Социальная ответственность</h4>
+                            <p>Использование влияния для общественного блага</p>
+                        </div>
+                    </div>
+
+                    <div class="note-box">
+                        <strong>Важно:</strong> Принципы работают лучше в сочетании и при этичном применении.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Принципы Section -->
+        <section id="principles" class="section fade-in">
+            <div class="section-header" style="border-color: #9b59b6;">
+                <div class="section-icon" style="background-color: #9b59b6;">
+                    <i class="fas fa-gem"></i>
+                </div>
+                <h2>Ключевые принципы работы с ресурсами</h2>
+            </div>
+
+            <div class="principles-grid">
+                <div class="principle-card triz">
+                    <h4><i class="fas fa-lightbulb"></i> Принцип идеальности (ТРИЗ)</h4>
+                    <p>Максимально использовать внутренние ресурсы системы для достижения функций с минимальными затратами. "Идеальная система — это когда системы нет, а функция выполняется".</p>
+                </div>
+
+                <div class="principle-card emotion">
+                    <h4><i class="fas fa-heart"></i> Закон эмоциональной инерции</h4>
+                    <p>Эмоция стремится сохранять свое направление и интенсивность. Радость порождает предрасположенность к новой радости, печаль — к новой печали.</p>
+                </div>
+
+                <div class="principle-card influence">
+                    <h4><i class="fas fa-chart-line"></i> Принцип взаимности</h4>
+                    <p>Люди чувствуют себя обязанными отвечать взаимностью на полученные блага, уступки или информацию. Основа для построения долгосрочных отношений.</p>
+                </div>
+
+                <div class="principle-card triz">
+                    <h4><i class="fas fa-recycle"></i> Принцип использования вредного</h4>
+                    <p>Заставить "вредный" фактор или ресурсы антисистемы приносить пользу. Превращение минусов в плюсы.</p>
+                </div>
+
+                <div class="principle-card emotion">
+                    <h4><i class="fas fa-link"></i> Принцип раннего прерывания</h4>
+                    <p>Эмоциональные цепочки легче прервать на ранних стадиях (легче остановить раздражение, чем ярость).</p>
+                </div>
+
+                <div class="principle-card influence">
+                    <h4><i class="fas fa-clipboard-check"></i> Принцип последовательности</h4>
+                    <p>Люди стремятся быть последовательными в своих словах, действиях и убеждениях. Публичные обязательства имеют особую силу.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison Section -->
+        <section id="comparison" class="section fade-in">
+            <div class="section-header" style="border-color: #f39c12;">
+                <div class="section-icon" style="background-color: #f39c12;">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                <h2>Сравнительный анализ подходов</h2>
+            </div>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Критерий</th>
+                        <th>ТРИЗ (технические системы)</th>
+                        <th>Эмоциональные ресурсы</th>
+                        <th>Психология влияния</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Основная цель</strong></td>
+                        <td>Разрешение технических противоречий</td>
+                        <td>Управление эмоциями и когнитивными процессами</td>
+                        <td>Убеждение и влияние на поведение других</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ключевой принцип</strong></td>
+                        <td class="domain-cell triz-cell"><i class="fas fa-lightbulb"></i> Идеальность</td>
+                        <td class="domain-cell emotion-cell"><i class="fas fa-heart"></i> Осознанность</td>
+                        <td class="domain-cell influence-cell"><i class="fas fa-handshake"></i> Взаимность</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Тип ресурсов</strong></td>
+                        <td>Вещественные, полевые, пространственные, временные</td>
+                        <td>Эмоциональные, когнитивные, интегративные</td>
+                        <td>Социально-психологические, информационные, реляционные</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Приоритетные ресурсы</strong></td>
+                        <td>Внутренние и бесплатные</td>
+                        <td>Внутренние и развиваемые</td>
+                        <td>Социальные и контекстуальные</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Основной метод работы</strong></td>
+                        <td>Системный анализ и алгоритмы решения</td>
+                        <td>Самопознание и саморегуляция</td>
+                        <td>Понимание универсальных паттернов поведения</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Этический аспект</strong></td>
+                        <td>Повышение эффективности систем</td>
+                        <td>Личностный рост и благополучие</td>
+                        <td>Честность и взаимная выгода</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="note-box" style="margin-top: 2rem;">
+                <strong>Интегративный подход:</strong> Комбинирование принципов из всех трех областей позволяет создавать более эффективные стратегии решения задач, управления эмоциями и влияния на окружающих.
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Области знаний</h3>
+                    <ul class="footer-links">
+                        <li><a href="#triz">ТРИЗ (Альтшуллер)</a></li>
+                        <li><a href="#emotion">Психология эмоций</a></li>
+                        <li><a href="#influence">Психология влияния (Чалдини)</a></li>
+                        <li><a href="#principles">Интегративные принципы</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Практическое применение</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Решение сложных задач</a></li>
+                        <li><a href="#">Эмоциональная саморегуляция</a></li>
+                        <li><a href="#">Эффективные переговоры</a></li>
+                        <li><a href="#">Личностное развитие</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Источники</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-book"></i> ТРИЗ — Г.С. Альтшуллер</li>
+                        <li><i class="fas fa-book"></i> Психология влияния — Р. Чалдини</li>
+                        <li><i class="fas fa-brain"></i> Современная психология эмоций</li>
+                        <li><i class="fas fa-graduation-cap"></i> Образовательный ресурс</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>© 2023 Энциклопедия психологических ресурсов. Интеграция подходов ТРИЗ, психологии эмоций и влияния.</p>
+                <p style="margin-top: 0.5rem;">Создано для системного понимания и практического применения ресурсов в различных контекстах.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to top button -->
+    <div class="scroll-top" id="scrollTopBtn">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <script>
+        // View toggle functionality
+        const gridViewBtn = document.getElementById('gridViewBtn');
+        const listViewBtn = document.getElementById('listViewBtn');
+        const trizContent = document.getElementById('trizContent');
+        const emotionContent = document.getElementById('emotionContent');
+        const influenceContent = document.getElementById('influenceContent');
+
+        gridViewBtn.addEventListener('click', () => {
+            gridViewBtn.classList.add('active');
+            listViewBtn.classList.remove('active');
+
+            trizContent.classList.remove('list-view');
+            trizContent.classList.add('grid-view');
+
+            emotionContent.classList.remove('list-view');
+            emotionContent.classList.add('grid-view');
+
+            influenceContent.classList.remove('list-view');
+            influenceContent.classList.add('grid-view');
+        });
+
+        listViewBtn.addEventListener('click', () => {
+            listViewBtn.classList.add('active');
+            gridViewBtn.classList.remove('active');
+
+            trizContent.classList.remove('grid-view');
+            trizContent.classList.add('list-view');
+
+            emotionContent.classList.remove('grid-view');
+            emotionContent.classList.add('list-view');
+
+            influenceContent.classList.remove('grid-view');
+            influenceContent.classList.add('list-view');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+
+                    // Update active nav link
+                    document.querySelectorAll('.nav-links a').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Highlight active section on scroll
+        const sections = document.querySelectorAll('.section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Add animation to elements when they come into view
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Initialize with grid view
+        trizContent.classList.add('grid-view');
+        emotionContent.classList.add('grid-view');
+        influenceContent.classList.add('grid-view');
+    </script>
+</body>
+</html>
