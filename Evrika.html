@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Эвристические методы | Инструменты творческого мышления</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #f72585;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --de-bono-color: #4cc9f0;
+            --ogilvy-color: #06d6a0;
+            --triz-color: #7209b7;
+            --example-color: #ff9e00;
+            --shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f7ff;
+            color: var(--dark-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Шапка */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 70px 0 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .nav-button {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-button:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px);
+        }
+
+        .nav-button i {
+            margin-right: 10px;
+        }
+
+        /* Основной контент */
+        .section {
+            background-color: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: var(--shadow);
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .section-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--dark-color);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .method-card {
+            background-color: #f9f9f9;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .method-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .method-card.de-bono {
+            border-left-color: var(--de-bono-color);
+        }
+
+        .method-card.ogilvy {
+            border-left-color: var(--ogilvy-color);
+        }
+
+        .method-card.triz {
+            border-left-color: var(--triz-color);
+        }
+
+        .method-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .method-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.2rem;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .method-icon.de-bono {
+            background: linear-gradient(135deg, var(--de-bono-color), #3a86ff);
+        }
+
+        .method-icon.ogilvy {
+            background: linear-gradient(135deg, var(--ogilvy-color), #06a67e);
+        }
+
+        .method-icon.triz {
+            background: linear-gradient(135deg, var(--triz-color), #9d4edd);
+        }
+
+        .method-title {
+            font-size: 1.5rem;
+            color: var(--dark-color);
+        }
+
+        .method-author {
+            font-size: 1rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .highlight {
+            background-color: rgba(76, 201, 240, 0.1);
+            border-left: 4px solid var(--de-bono-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .example-box {
+            background-color: #fff8e1;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px dashed #ffd54f;
+        }
+
+        .example-title {
+            font-weight: 600;
+            color: var(--example-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .example-title i {
+            margin-right: 8px;
+        }
+
+        .method-technique {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .technique-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .technique-title i {
+            margin-right: 8px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .comparison-table th {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .comparison-table tr:hover {
+            background-color: #f0f7ff;
+        }
+
+        .method-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        .badge-de-bono {
+            background-color: rgba(76, 201, 240, 0.2);
+            color: var(--de-bono-color);
+        }
+
+        .badge-ogilvy {
+            background-color: rgba(6, 214, 160, 0.2);
+            color: var(--ogilvy-color);
+        }
+
+        .badge-triz {
+            background-color: rgba(114, 9, 183, 0.2);
+            color: var(--triz-color);
+        }
+
+        .practical-guide {
+            background: linear-gradient(135deg, #f0f7ff, #e3f2fd);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        .guide-title {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .guide-title i {
+            margin-right: 10px;
+        }
+
+        .guide-step {
+            display: flex;
+            margin-bottom: 15px;
+        }
+
+        .step-number {
+            background-color: var(--primary-color);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section {
+                padding: 30px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section {
+                padding: 25px;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-button {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .comparison-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #ddd;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        ul, ol {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .term {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1>Эвристические методы</h1>
+                <p class="subtitle">Инструменты творческого мышления от де Боно, Огилви и Альтшуллера для решения сложных задач</p>
+
+                <div class="nav-buttons">
+                    <a href="index.html" class="nav-button">
+                        <i class="fas fa-home"></i> На главную
+                    </a>
+                    <a href="APCHI.html" class="nav-button">
+                        <i class="fas fa-brain"></i> Подробности АПЧХИ
+                    </a>
+                    <a href="System.html" class="nav-button">
+                        <i class="fas fa-project-diagram"></i> Системное мышление
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Введение -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <div>
+                    <h2 class="section-title">Что такое эвристические методы?</h2>
+                    <p class="section-subtitle">Практические инструменты для поиска решений, когда стандартной логики недостаточно</p>
+                </div>
+            </div>
+
+            <p>Эвристические методы — это интеллектуальные «инструменты» или правила-помощники, которые позволяют находить решения проблем быстрее и эффективнее, особенно когда информации недостаточно или задача очень сложна. Вместо долгого логического анализа они предлагают практические ярлыки для генерации идей.</p>
+
+            <div class="highlight">
+                <p><strong>Ключевая идея:</strong> Эвристики — это не строгие алгоритмы, а гибкие подходы, которые помогают выйти за рамки привычного мышления и найти неочевидные решения.</p>
+            </div>
+
+            <p>На этой странице собраны три мощных подхода к творческому решению задач, которые вы можете применять как отдельно, так и в комбинации с алгоритмом АПЧХИ.</p>
+        </div>
+
+        <!-- Эдвард де Боно -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: linear-gradient(135deg, var(--de-bono-color), #3a86ff);">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <div>
+                    <h2 class="section-title">Эдвард де Боно: Латеральное мышление</h2>
+                    <p class="section-subtitle">Выход за рамки привычной логики для поиска неочевидных решений</p>
+                </div>
+            </div>
+
+            <div class="method-card de-bono">
+                <div class="method-header">
+                    <div class="method-icon de-bono">
+                        <i class="fas fa-random"></i>
+                    </div>
+                    <div>
+                        <h3 class="method-title">Латеральное мышление</h3>
+                        <p class="method-author">Эдвард де Боно</p>
+                    </div>
+                </div>
+
+                <p>Это подход, который помогает взглянуть на проблему с новой, неочевидной стороны, выйдя за рамки привычного логического (вертикального) мышления. Его цель — сгенерировать простые и действенные идеи.</p>
+
+                <div class="highlight">
+                    <p><strong>Ключевая метафора:</strong> «Нельзя выкопать новую яму, углубляя старую». Нужно сменить точку приложения сил.</p>
+                </div>
+
+                <div class="method-technique">
+                    <div class="technique-title">
+                        <i class="fas fa-bullseye"></i> Метод «Смена фокуса»
+                    </div>
+                    <p><strong>Суть:</strong> Намеренно сместить внимание с центра проблемы на её периферийный элемент или условие.</p>
+
+                    <div class="example-box">
+                        <div class="example-title">
+                            <i class="fas fa-lightbulb"></i> Пример применения
+                        </div>
+                        <p><strong>Задача:</strong> В кафе посетители задерживаются за столиками с одним напитком, из-за чего новым гостям не хватает мест.</p>
+                        <p><strong>Обычное решение:</strong> Ввести ограничение по времени, повысить цены.</p>
+                        <p><strong>Латеральное решение (история де Боно):</strong> Сделать сиденья и столики менее удобными для долгого сидения (например, слегка наклонёнными), чтобы люди инстинктивно уходили быстрее, не чувствуя принуждения.</p>
+                    </div>
+                </div>
+
+                <div class="method-technique">
+                    <div class="technique-title">
+                        <i class="fas fa-question-circle"></i> Классическая задача на латеральное мышление
+                    </div>
+                    <p><strong>Сценарий:</strong> Ростовщик предложил дочери купца спасти отца от долговой тюрьмы. Она должна вытащить из кошелька один из двух камней: белый (свобода) или чёрный (замужество за ростовщиком). Девушка видит, что он положил в кошель два чёрных камня.</p>
+
+                    <div class="example-box">
+                        <div class="example-title">
+                            <i class="fas fa-lightbulb"></i> Решение
+                        </div>
+                        <p><strong>Вертикальное мышление:</strong> Выбирать между двумя плохими исходами — подчиниться обману или обвинить ростовщика.</p>
+                        <p><strong>Латеральное решение:</strong> Девушка вытащила камень и, не глядя на него, уронила в гравий. «Не беда, — сказала она, — посмотрим, какой камень остался в кошельке. Его цвет покажет, что я выбрала». Так она превратила знание об обмане в свою силу.</p>
+                    </div>
+                </div>
+
+                <div class="method-technique">
+                    <div class="technique-title">
+                        <i class="fas fa-tools"></i> Практические техники де Боно
+                    </div>
+                    <ul>
+                        <li><strong>Шесть шляп мышления:</strong> Рассмотрение проблемы с шести разных перспектив (факты, эмоции, критика, оптимизм, творчество, управление).</li>
+                        <li><strong>Случайный вход:</strong> Выбор случайного слова или образа и поиск связи с проблемой.</li>
+                        <li><strong>Провокационная идея (ПО):</strong> Создание намеренно абсурдного утверждения, чтобы выйти за рамки привычного.</li>
+                        <li><strong>Выдвижение концепций:</strong> Сначала придумываем общую концепцию решения, а затем ищем способы её реализации.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Дэвид Огилви -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: linear-gradient(135deg, var(--ogilvy-color), #06a67e);">
+                    <i class="fas fa-bullhorn"></i>
+                </div>
+                <div>
+                    <h2 class="section-title">Дэвид Огилви: Принципы эффективной коммуникации</h2>
+                    <p class="section-subtitle">Как сделать идею убедительной и результативной</p>
+                </div>
+            </div>
+
+            <div class="method-card ogilvy">
+                <div class="method-header">
+                    <div class="method-icon ogilvy">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div>
+                        <h3 class="method-title">Принципы эффективной идеи</h3>
+                        <p class="method-author">Дэвид Огилви</p>
+                    </div>
+                </div>
+
+                <p>Подход «отца рекламы» фокусируется не на абстрактном творчестве, а на <strong>результативности</strong>. Идея хороша, только если она работает и понятна целевой аудитории.</p>
+
+                <div class="highlight">
+                    <p><strong>Ключевой принцип:</strong> «Если что-то не продаётся, то это не креатив». Ценность идеи — в её способности вызывать нужное действие.</p>
+                </div>
+
+                <div class="method-technique">
+                    <div class="technique-title">
+                        <i class="fas fa-search"></i> Глубокое погружение в предмет
+                    </div>
+                    <p>Прежде чем генерировать идею, нужно стать экспертом в теме.</p>
+
+                    <div class="example-box">
+                        <div class="example-title">
+                            <i class="fas fa-lightbulb"></i> Пример Огилви
+                        </div>
+                        <p>Для легендарного заголовка о Rolls-Royce («На скорости 60 миль в час самый сильный шум производят электрические часы») Огилви три недели изучал техническую документацию автомобиля, пока не нашёл эту деталь в отчёте инженеров.</p>
+                    </div>
+                </div>
+
+                <div class="method-technique">
+                    <div class="technique-title">
+                        <i class="fas fa-user-check"></i> Фокусировка на выгоде для потребителя
+                    </div>
+                    <p>Говорите не о характеристиках, а о том, как продукт улучшает жизнь.</p>
+
+                    <div class="example-box">
+                        <div class="example-title">
+                            <i class="fas fa-lightbulb"></i> Пример применения
+                        </div>
+                        <p><strong>Вместо:</strong> «Наше приложение имеет интеграцию с соцсетями»</p>
+                        <p><strong>Лучше:</strong> «Делитесь погодой с друзьями в один клик»</p>
+                    </div>
+                </div>
+
+                <div class="method-technique">
+                    <div class="technique-title">
+                        <i class="fas fa-users"></i> Сила социального доказательства
+                    </div>
+                    <p>Идеи и продукты вызывают больше доверия, когда их одобряют другие.</p>
+
+                    <div class="example-box">
+                        <div class="example-title">
+                            <i class="fas fa-lightbulb"></i> Пример применения
+                        </div>
+                        <p>Огилви активно использовал отзывы реальных пользователей, цитаты экспертов, данные о популярности. Например, в рекламе шампуня он приводил статистику: «8 из 10 женщин отметили улучшение состояния волос».</p>
+                    </div>
+                </div>
+
+                <div class="method-technique">
+                    <div class="technique-title">
+                        <i class="fas fa-heading"></i> Правило заголовка
+                    </div>
+                    <p>80% внимания забирает заголовок или главный посыл. Он должен обещать конкретную пользу.</p>
+
+                    <div class="example-box">
+                        <div class="example-title">
+                            <i class="fas fa-lightbulb"></i> Примеры сильных заголовков Огилви
+                        </div>
+                        <ul>
+                            <li>«При скорости 60 миль в час самый громкий шум в этом новом Rolls-Royce исходит от электрических часов»</li>
+                            <li>«Как зарабатывать больше денег, управляя своим собственным бизнесом»</li>
+                            <li>«При 60 милях в час самый громкий шум слышен от часов»</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Генрих Альтшуллер -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: linear-gradient(135deg, var(--triz-color), #9d4edd);">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <div>
+                    <h2 class="section-title">Генрих Альтшуллер: ТРИЗ (Теория решения изобретательских задач)</h2>
+                    <p class="section-subtitle">Системный алгоритм для решения сложных технических задач</p>
+                </div>
+            </div>
+
+            <div class="method-card triz">
+                <div class="method-header">
+                    <div class="method-icon triz">
+                        <i class="fas fa-puzzle-piece"></i>
+                    </div>
+                    <div>
+                        <h3 class="method-title">Алгоритм ТРИЗ</h3>
+                        <p class="method-author">Генрих Альтшуллер</p>
+                    </div>
+                </div>
+
+                <p>ТРИЗ (Теория решения изобретательских задач) — это <strong>система последовательных шагов</strong> для анализа и решения сложных технических и не только проблем.</p>
+
+                <div class="highlight">
+                    <p><strong>Философия:</strong> Изобретать можно системно, а не только по наитию. Противоречия — двигатель прогресса.</p>
+                </div>
+
+                <div class="method-technique">
+                    <div class="technique-title">
+                        <i class="fas fa-star"></i> Ключевые понятия ТРИЗ
+                    </div>
+                    <ul>
+                        <li><strong>Идеальность:</strong> Лучшее решение — когда система сама выполняет нужную функцию без затрат и осложнений.</li>
+                        <li><strong>Противоречие:</strong> Ситуация, когда улучшение одного параметра ухудшает другой (например, автомобиль мощнее, но расходует больше топлива). Задача — разрешить его.</li>
+                        <li><strong>Ресурсы:</strong> Все, что есть в системе и её окружении и может быть использовано для решения.</li>
+                        <li><strong>Приёмы:</strong> 40 стандартных приёмов разрешения противоречий.</li>
+                    </ul>
+                </div>
+
+                <div class="method-technique">
+                    <div class="technique-title">
+                        <i class="fas fa-footsteps"></i> Пример применения алгоритма ТРИЗ
+                    </div>
+
+                    <div class="example-box">
+                        <div class="example-title">
+                            <i class="fas fa-lightbulb"></i> Задача: Шлифовальный круг для ложек
+                        </div>
+                        <p><strong>1. Выявить противоречие:</strong></p>
+                        <p>Шлифовальный круг хорошо обрабатывает плоские поверхности, но не может шлифовать ложки с их сложным рельефом.</p>
+                        <p><strong>Противоречие:</strong> Круг должен быть жёстким (для шлифовки), и должен быть гибким (для повторения формы ложки).</p>
+
+                        <p><strong>2. Сформулировать Идеальный Конечный Результат (ИКР):</strong> Круг <strong>сам</strong> идеально повторяет форму изделия без потери жёсткости.</p>
+
+                        <p><strong>3. Применить стандартный приём</strong> (из базы ТРИЗ): <strong>Разделение противоречивых свойств в пространстве</strong>.</p>
+
+                        <p><strong>4. Решение-идея:</strong> Сделать круг не монолитным, а состоящим из множества мелких независимых сегментов на гибкой основе. В целом круг остаётся жёстким, а локально — подстраивается под форму.</p>
+                    </div>
+                </div>
+
+                <div class="method-technique">
+                    <div class="technique-title">
+                        <i class="fas fa-bolt"></i> Другие примеры применения ТРИЗ
+                    </div>
+                    <ul>
+                        <li><strong>Задача:</strong> Защитить антенну от молний, не создавая помех для сигнала.</li>
+                        <li><strong>Решение ТРИЗ:</strong> Использовать саму молнию (или её канал) как временный проводник-отвод (принцип «обратить вред в пользу»).</li>
+                        <li><strong>Задача:</strong> Сделать напиток горячим и холодным одновременно для разных потребителей.</li>
+                        <li><strong>Решение ТРИЗ:</strong> Создать ёмкость с раздельными отсеками или использовать материал с разной теплопроводностью в разных частях (принцип «разделения»).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Сравнительная таблица -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: linear-gradient(135deg, #6c757d, #495057);">
+                    <i class="fas fa-balance-scale"></i>
+                </div>
+                <div>
+                    <h2 class="section-title">Сравнение методов</h2>
+                    <p class="section-subtitle">Какой подход выбрать для вашей задачи?</p>
+                </div>
+            </div>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Критерий</th>
+                        <th>Латеральное мышление (де Боно)</th>
+                        <th>Принципы Огилви</th>
+                        <th>ТРИЗ (Альтшуллер)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Основная цель</strong></td>
+                        <td>Найти неочевидный, новый угол зрения на проблему</td>
+                        <td>Сделать идею максимально убедительной и результативной</td>
+                        <td>Системно разрешить противоречие и прийти к сильному изобретательскому решению</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Лучше всего подходит для</strong></td>
+                        <td>Разрушения шаблонов, генерации оригинальных концепций, выхода из творческого тупика</td>
+                        <td>Проверки и «упаковки» идей, коммуникации, рекламы, презентаций, убеждения</td>
+                        <td>Решения сложных технических, инженерных, проектных задач с чётко сформулированными противоречиями</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ключевой инструмент</strong></td>
+                        <td>Провокация, смена точки фокуса, использование случая</td>
+                        <td>Исследование, фокус на выгоде, социальное доказательство</td>
+                        <td>Анализ противоречий, Идеальный Конечный Результат (ИКР), база приёмов</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Простой пример</strong></td>
+                        <td>Чтобы уменьшить длительность звонков, сделать телефонные трубки тяжелее</td>
+                        <td>Рекламировать тишину в салоне Rolls-Royce, цитируя технический отчёт</td>
+                        <td>Для защиты антенны от молний без помех: использовать саму молнию как временный проводник-отвод</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Когда применять</strong></td>
+                        <td><span class="method-badge badge-de-bono">Тупик</span> <span class="method-badge badge-de-bono">Нет идей</span> <span class="method-badge badge-de-bono">Нужна новизна</span></td>
+                        <td><span class="method-badge badge-ogilvy">Идея есть</span> <span class="method-badge badge-ogilvy">Нужна упаковка</span> <span class="method-badge badge-ogilvy">Убеждение</span></td>
+                        <td><span class="method-badge badge-triz">Техническая задача</span> <span class="method-badge badge-triz">Есть противоречие</span> <span class="method-badge badge-triz">Нужно изобретение</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Практическое руководство -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: linear-gradient(135deg, var(--accent-color), #d9048c);">
+                    <i class="fas fa-play-circle"></i>
+                </div>
+                <div>
+                    <h2 class="section-title">Практическое руководство по применению</h2>
+                    <p class="section-subtitle">Как начать использовать эти методы в работе и жизни</p>
+                </div>
+            </div>
+
+            <div class="practical-guide">
+                <h3 class="guide-title"><i class="fas fa-compass"></i> Как выбрать метод для вашей задачи?</h3>
+
+                <div class="guide-step">
+                    <div class="step-number">1</div>
+                    <div>
+                        <p><strong>Диагностируйте задачу:</strong></p>
+                        <ul>
+                            <li><strong>Тупик, нет идей?</strong> → Попробуйте <strong>латеральное мышление</strong>. Задайте себе: «А что, если сделать наоборот?», «На что это похоже в совершенно другой сфере?»</li>
+                            <li><strong>Идея есть, но её не принимают?</strong> → Прогоните её через <strong>принципы Огилви</strong>. Чётко сформулируйте выгоду, найдите социальное доказательство, усильте заголовок.</li>
+                            <li><strong>Есть техническое противоречие?</strong> → Используйте <strong>логику ТРИЗ</strong>. Чётко запишите: «Если улучшаем А, ухудшается Б. Как улучшить А, не ухудшив Б?»</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="guide-step">
+                    <div class="step-number">2</div>
+                    <div>
+                        <p><strong>Комбинируйте подходы для максимального эффекта:</strong></p>
+                        <ol>
+                            <li>Сначала <strong>латеральным мышлением</strong> найдите нестандартную идею.</li>
+                            <li>Затем с помощью <strong>ТРИЗ</strong> проверьте её на внутренние противоречия и усильте.</li>
+                            <li>Наконец, используя <strong>принципы Огилви</strong>, упакуйте и представьте её так, чтобы она была убедительной для других.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="guide-step">
+                    <div class="step-number">3</div>
+                    <div>
+                        <p><strong>Начните с простых упражнений:</strong></p>
+                        <ul>
+                            <li><strong>Для де Боно:</strong> Каждый день находите один привычный процесс (например, приготовление кофе) и придумайте 3 способа сделать его наоборот.</li>
+                            <li><strong>Для Огилви:</strong> Возьмите любой продукт и сформулируйте его главную выгоду в одном предложении, начинающемся с «Вы сможете...».</li>
+                            <li><strong>Для ТРИЗ:</strong> Найдите в окружающем мире любой объект и определите, какие противоречия решали его создатели.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight" style="margin-top: 30px;">
+                <p><strong>Запомните:</strong> Эвристики — это не строгие законы, а <strong>инструменты для расширения возможностей вашего мышления</strong>. Чем больше инструментов в вашем арсенале, тем более изобретательным и эффективным становится поиск решений.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Подвал -->
+    <div class="container">
+        <div class="footer-note">
+            <p>Эвристические методы — это мощные инструменты, которые становятся ещё эффективнее при комбинировании с алгоритмом АПЧХИ. Экспериментируйте, комбинируйте и находите свои уникальные подходы к решению задач.</p>
+            <p>© АПЧХИ — Алгоритм Придумывания Чокнутых Хитрых Идей | Эвристические методы</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Анимация появления секций при прокрутке
+            const sections = document.querySelectorAll('.section');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeIn 0.8s ease forwards';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Плавная прокрутка к разделам
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#' || !targetId.startsWith('#')) return;
+
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Подсветка строк в таблице при наведении
+            const tableRows = document.querySelectorAll('.comparison-table tr');
+            tableRows.forEach(row => {
+                row.addEventListener('mouseenter', function() {
+                    this.style.backgroundColor = '#f0f7ff';
+                });
+                row.addEventListener('mouseleave', function() {
+                    if (this.rowIndex % 2 === 0) {
+                        this.style.backgroundColor = '#f9f9f9';
+                    } else {
+                        this.style.backgroundColor = 'white';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

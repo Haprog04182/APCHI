@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подробности: Алгоритм АПЧХИ | Авторская методология</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #f72585;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --stage-1-color: #4cc9f0;
+            --stage-2-color: #4361ee;
+            --stage-3-color: #7209b7;
+            --example-color: #ff9e00;
+            --shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f7ff;
+            color: var(--dark-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Шапка */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 70px 0 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .version {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .nav-button {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-button:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px);
+        }
+
+        .nav-button i {
+            margin-right: 10px;
+        }
+
+        /* Основной контент */
+        .section {
+            background-color: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: var(--shadow);
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .section-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--dark-color);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .content-card {
+            background-color: #f9f9f9;
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-title i {
+            margin-right: 10px;
+        }
+
+        .highlight {
+            background-color: rgba(76, 201, 240, 0.1);
+            border-left: 4px solid var(--stage-1-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .example-box {
+            background-color: #fff8e1;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px dashed #ffd54f;
+        }
+
+        .example-title {
+            font-weight: 600;
+            color: var(--example-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .example-title i {
+            margin-right: 8px;
+        }
+
+        .important-note {
+            background-color: #ffeef5;
+            border-left: 4px solid var(--accent-color);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .step {
+            display: flex;
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .step:last-child {
+            border-bottom: none;
+        }
+
+        .step-number {
+            background-color: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            font-size: 1.2rem;
+            color: var(--dark-color);
+            margin-bottom: 10px;
+        }
+
+        .algorithm-diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 40px 0;
+            padding: 30px;
+            background-color: #f0f7ff;
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .diagram-stage {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            max-width: 800px;
+            margin: 15px 0;
+            padding: 20px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .stage-number {
+            background-color: var(--stage-1-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .stage-2 .stage-number {
+            background-color: var(--stage-2-color);
+        }
+
+        .stage-3 .stage-number {
+            background-color: var(--stage-3-color);
+        }
+
+        .stage-content {
+            flex: 1;
+        }
+
+        .stage-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 5px;
+        }
+
+        .diagram-arrow {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin: 10px 0;
+        }
+
+        .cycle-note {
+            text-align: center;
+            font-style: italic;
+            color: #666;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px dashed #ccc;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section {
+                padding: 30px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .algorithm-diagram {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section {
+                padding: 25px;
+            }
+
+            .diagram-stage {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px;
+            }
+
+            .stage-number {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-button {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #ddd;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        ul, ol {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .term {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="version">Версия 0.0.3</div>
+                <h1>Алгоритм АПЧХИ: Подробности</h1>
+                <p class="subtitle">Детальное руководство по применению алгоритма придумывания чокнутых хитрых идей с примерами и пояснениями</p>
+
+                <div class="nav-buttons">
+                    <a href="index.html" class="nav-button">
+                        <i class="fas fa-home"></i> На главную
+                    </a>
+                    <a href="System.html" class="nav-button">
+                        <i class="fas fa-project-diagram"></i> Системное мышление
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Введение -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div>
+                    <h2 class="section-title">Что такое АПЧХИ?</h2>
+                    <p class="section-subtitle">Алгоритм Придумывания (Чокнутых) Хитрых Идей — системный подход к решению сложных задач</p>
+                </div>
+            </div>
+
+            <p>АПЧХИ — это структурированный метод поиска нестандартных решений, основанный на принципах системного анализа, ТРИЗ и эвристических подходов. Алгоритм помогает преодолеть инерцию мышления и найти решения, которые не очевидны при первом рассмотрении.</p>
+
+            <div class="highlight">
+                <p><strong>Ключевая идея:</strong> Лучшие решения часто находятся на пересечении ресурсов системы и идеального конечного результата. АПЧХИ помогает систематически искать эти пересечения, используя циклический процесс из трех этапов.</p>
+            </div>
+
+            <p>Алгоритм особенно эффективен для решения задач, где традиционные подходы не работают, или когда нужно найти принципиально новое решение, а не просто улучшить существующее.</p>
+        </div>
+
+        <!-- Диаграмма алгоритма -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: linear-gradient(135deg, var(--stage-1-color), #3a86ff);">
+                    <i class="fas fa-sitemap"></i>
+                </div>
+                <div>
+                    <h2 class="section-title">Структура алгоритма</h2>
+                    <p class="section-subtitle">Три циклических этапа, образующих единый процесс поиска решений</p>
+                </div>
+            </div>
+
+            <div class="algorithm-diagram">
+                <div class="diagram-stage">
+                    <div class="stage-number">1</div>
+                    <div class="stage-content">
+                        <div class="stage-title">ИКР и "5 почему"</div>
+                        <p>Формулирование идеального конечного результата и поиск глубинных причин проблемы</p>
+                    </div>
+                </div>
+
+                <div class="diagram-arrow">
+                    <i class="fas fa-arrow-down"></i>
+                </div>
+
+                <div class="diagram-stage stage-2">
+                    <div class="stage-number">2</div>
+                    <div class="stage-content">
+                        <div class="stage-title">Поиск ресурсов</div>
+                        <p>Анализ системы для выявления всех доступных ресурсов и возможностей</p>
+                    </div>
+                </div>
+
+                <div class="diagram-arrow">
+                    <i class="fas fa-arrow-down"></i>
+                </div>
+
+                <div class="diagram-stage stage-3">
+                    <div class="stage-number">3</div>
+                    <div class="stage-content">
+                        <div class="stage-title">Соединение и решение</div>
+                        <p>Поиск решений на пересечении ресурсов и ИКР, проверка и доработка идей</p>
+                    </div>
+                </div>
+
+                <div class="cycle-note">
+                    <i class="fas fa-sync-alt"></i> Алгоритм является циклическим: после третьего этапа можно вернуться к первому для уточнения или поиска лучших решений
+                </div>
+            </div>
+        </div>
+
+        <!-- Этап 1: ИКР и 5 почему -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: linear-gradient(135deg, var(--stage-1-color), #3a86ff);">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <div>
+                    <h2 class="section-title">Этап 1: ИКР и "5 почему"</h2>
+                    <p class="section-subtitle">Определение идеального результата и поиск корневых причин проблемы</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <div class="step-title">Формулировка ИКР</div>
+                    <p><span class="term">Идеальный Конечный Результат (ИКР)</span> — это описание решения, при котором система сама выполняет нужную функцию без дополнительных затрат, усложнений или негативных последствий.</p>
+                    <p>ИКР формулируется без учета ограничений и реалистичности, чтобы определить, к чему нужно стремиться в идеале.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <div class="step-title">Метод "5 почему"</div>
+                    <p>Техника для поиска глубинных причин проблемы. Для каждого ответа на вопрос "почему?" задается следующий вопрос "почему?", пока не будет найдена корневая причина (обычно после 5 итераций).</p>
+
+                    <div class="example-box">
+                        <div class="example-title">
+                            <i class="fas fa-lightbulb"></i> Пример: Почему вода выкипает из кастрюли?
+                        </div>
+                        <ol>
+                            <li>Почему вода выкипает? — Потому что кастрюля стоит на плите</li>
+                            <li>Почему кастрюля стоит на плите? — Чтобы нагреть воду</li>
+                            <li>Почему нужно нагреть воду? — Чтобы приготовить еду</li>
+                            <li>Почему нужно приготовить еду? — Чтобы человек мог поесть</li>
+                            <li>Почему человеку нужно поесть? — Чтобы получить энергию и питательные вещества</li>
+                        </ol>
+                        <p>Корневая причина: необходимость получения энергии, а не просто кипячение воды.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <div class="step-title">Преобразование в ИКР и выявление противоречий</div>
+                    <p>Каждый ответ из "5 почему" преобразуется в форму ИКР. Это помогает создать несколько формулировок задачи с разных точек зрения.</p>
+                    <p>Затем выявляются противоречия — ситуации, когда улучшение одного параметра системы ухудшает другой параметр.</p>
+
+                    <div class="example-box">
+                        <div class="example-title">
+                            <i class="fas fa-lightbulb"></i> Пример противоречия
+                        </div>
+                        <p><strong>Ситуация:</strong> Нужно увеличить прочность детали, но при этом уменьшить ее вес.</p>
+                        <p><strong>Противоречие:</strong> Увеличение прочности обычно требует больше материала (увеличивает вес), а уменьшение веса ослабляет конструкцию.</p>
+                        <p><strong>Решение:</strong> Изменить структуру материала (сотовые конструкции, композиты) или принцип работы.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Этап 2: Ресурсы -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: linear-gradient(135deg, var(--stage-2-color), #560bad);">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div>
+                    <h2 class="section-title">Этап 2: Поиск ресурсов</h2>
+                    <p class="section-subtitle">Выявление всех доступных ресурсов в системе и ее окружении</p>
+                </div>
+            </div>
+
+            <p>Ресурсы — это все, что можно использовать для решения задачи: материалы, энергия, информация, пространство, время, связи между элементами системы.</p>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3 class="card-title"><i class="fas fa-box-open"></i> Виды ресурсов</h3>
+                    <ul>
+                        <li><strong>Вещественные:</strong> материалы, детали, компоненты системы</li>
+                        <li><strong>Энергетические:</strong> различные формы энергии в системе</li>
+                        <li><strong>Информационные:</strong> данные, сигналы, знания</li>
+                        <li><strong>Временные:</strong> время до/после событий, параллельные процессы</li>
+                        <li><strong>Пространственные:</strong> место, форма, объем, пустоты</li>
+                        <li><strong>Системные:</strong> связи между элементами, структура системы</li>
+                    </ul>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="card-title"><i class="fas fa-recycle"></i> Превращение вредного в полезное</h3>
+                    <p>Ключевой принцип поиска ресурсов: анализ того, что ухудшает систему, и поиск способов использовать это на пользу.</p>
+
+                    <div class="example-box">
+                        <div class="example-title">
+                            <i class="fas fa-lightbulb"></i> Примеры
+                        </div>
+                        <ul>
+                            <li>Трение (вредное) → использование для торможения или сцепления (полезное)</li>
+                            <li>Вибрция (вредная) → использование для уплотнения или перемешивания (полезное)</li>
+                            <li>Отходы (вредные) → сырье для другого процесса (полезное)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="important-note">
+                <p><strong>Важно:</strong> Лучшие ресурсы — те, которые уже есть в системе и ее окружении. Идеально, если нужную функцию может выполнить часть самой системы, без добавления новых элементов.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <div class="step-title">Системный анализ ресурсов</div>
+                    <p>Анализ системы на трех уровнях: надсистема, система, подсистема. На каждом уровне ищутся ресурсы, которые можно использовать.</p>
+
+                    <div class="example-box">
+                        <div class="example-title">
+                            <i class="fas fa-lightbulb"></i> Пример: Шуруповерт
+                        </div>
+                        <p><strong>Надсистема:</strong> Рука пользователя, электрическая сеть, воздух в помещении</p>
+                        <p><strong>Система:</strong> Корпус, двигатель, аккумулятор, патрон, кнопка</p>
+                        <p><strong>Подсистема:</strong> Винты, шестерни, подшипники, провода, изоляция</p>
+                        <p><strong>Ресурсы:</strong> Вращение двигателя, вес аккумулятора, тепло от работы, форма корпуса, звук работы</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Этап 3: Соединение и решение -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: linear-gradient(135deg, var(--stage-3-color), #b5179e);">
+                    <i class="fas fa-puzzle-piece"></i>
+                </div>
+                <div>
+                    <h2 class="section-title">Этап 3: Соединение и решение</h2>
+                    <p class="section-subtitle">Поиск решений на пересечении ресурсов и ИКР</p>
+                </div>
+            </div>
+
+            <p>На этом этапе происходит синтез: мы ищем способы использовать выявленные ресурсы для достижения ИКР.</p>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3 class="card-title"><i class="fas fa-crosshairs"></i> Поиск пересечений</h3>
+                    <p>Сопоставление каждого ресурса с требованиями ИКР. В местах пересечения находятся потенциальные решения.</p>
+                    <p><strong>Вопросы для поиска:</strong></p>
+                    <ul>
+                        <li>Как этот ресурс может помочь достичь ИКР?</li>
+                        <li>Какую функцию из ИКР может выполнить этот ресурс?</li>
+                        <li>Что нужно изменить в ресурсе, чтобы он выполнял нужную функцию?</li>
+                    </ul>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="card-title"><i class="fas fa-check-circle"></i> Проверка решений</h3>
+                    <p>Каждое потенциальное решение проверяется на:</p>
+                    <ul>
+                        <li>Соответствие ИКР</li>
+                        <li>Отсутствие новых противоречий</li>
+                        <li>Реализуемость с доступными ресурсами</li>
+                        <li>Эффективность и простоту</li>
+                    </ul>
+                    <p>Если решение не удовлетворяет критериям, можно вернуться к предыдущим этапам для уточнения.</p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">
+                    <i class="fas fa-lightbulb"></i> Пример: Решение задачи с кастрюлей
+                </div>
+                <p><strong>Проблема:</strong> Вода выкипает из кастрюли при приготовлении пищи.</p>
+                <p><strong>ИКР:</strong> Кастрюля сама поддерживает нужный уровень воды без контроля со стороны человека.</p>
+                <p><strong>Ресурсы:</strong> Пар от кипящей воды, конденсат на крышке, сила тяжести, разница температур, форма кастрюли.</p>
+                <p><strong>Решение:</strong> Специальная крышка с конденсационными ребрами и желобом, которая собирает конденсат и возвращает его в кастрюлю. Пар конденсируется на холодной крышке, вода стекает по желобу обратно в кастрюлю.</p>
+                <p><strong>Принцип:</strong> Использование уже имеющихся ресурсов (пар, конденсат, сила тяжести) для выполнения нужной функции (поддержание уровня воды).</p>
+            </div>
+
+            <div class="important-note">
+                <p><strong>Совет:</strong> Лучшие решения обычно просты и используют минимальное количество изменений в системе. Если решение кажется слишком сложным, возможно, стоит вернуться к этапу поиска ресурсов и поискать более подходящие варианты.</p>
+            </div>
+        </div>
+
+        <!-- Практическое применение -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: linear-gradient(135deg, var(--accent-color), #d9048c);">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <div>
+                    <h2 class="section-title">Практическое применение АПЧХИ</h2>
+                    <p class="section-subtitle">Как использовать алгоритм для решения реальных задач</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <div class="step-title">Определите задачу</div>
+                    <p>Четко сформулируйте проблему, которую нужно решить. Избегайте сразу переходить к решениям — сначала нужно правильно понять задачу.</p>
+                    <p><strong>Пример плохой формулировки:</strong> "Нужно сделать более прочный корпус для телефона"</p>
+                    <p><strong>Пример хорошей формулировки:</strong> "Телефон часто ломается при падении, нужно уменьшить вероятность повреждения"</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <div class="step-title">Примените этапы алгоритма</div>
+                    <p>Последовательно пройдите все три этапа АПЧХИ. Не пропускайте этапы, даже если кажется, что решение уже очевидно.</p>
+                    <ul>
+                        <li><strong>Этап 1:</strong> Сформулируйте ИКР, примените "5 почему", выявите противоречия</li>
+                        <li><strong>Этап 2:</strong> Проанализируйте систему на всех уровнях, найдите все возможные ресурсы</li>
+                        <li><strong>Этап 3:</strong> Сопоставьте ресурсы с ИКР, найдите пересечения, сформулируйте решения</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <div class="step-title">Проверьте и доработайте решение</div>
+                    <p>Проверьте найденное решение на соответствие критериям. Если решение не идеально, вернитесь к соответствующему этапу алгоритма для доработки.</p>
+                    <p>Помните, что АПЧХИ — циклический алгоритм. Можно проходить его несколько раз, каждый раз уточняя и улучшая решение.</p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">
+                    <i class="fas fa-lightbulb"></i> Пример применения АПЧХИ
+                </div>
+                <p><strong>Задача:</strong> Дети постоянно теряют школьные принадлежности (ручки, карандаши, ластики).</p>
+                <p><strong>Этап 1 (ИКР и "5 почему"):</strong></p>
+                <ul>
+                    <li>ИКР: Принадлежности сами возвращаются к ребенку, когда он в них нуждается</li>
+                    <li>"5 почему": Почему теряются? → Потому что маленькие; почему это проблема? → Нужно покупать новые; почему это плохо? → Тратится время и деньги и т.д.</li>
+                </ul>
+                <p><strong>Этап 2 (Ресурсы):</strong> Рюкзак, пенал, одежда, магнитная доска в классе, телефон, звук, свет, внимание учителя, привычки детей.</p>
+                <p><strong>Этап 3 (Решение):</strong> Магнитные держатели для ручек, которые крепятся к внутренней стороне пенала или рюкзака. Ручка всегда прикреплена к своему месту, не теряется, но легко снимается для использования.</p>
+            </div>
+        </div>
+
+        <!-- Ключевые принципы -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: linear-gradient(135deg, #4caf50, #2e7d32);">
+                    <i class="fas fa-key"></i>
+                </div>
+                <div>
+                    <h2 class="section-title">Ключевые принципы АПЧХИ</h2>
+                    <p class="section-subtitle">Основные идеи, на которых строится алгоритм</p>
+                </div>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3 class="card-title"><i class="fas fa-recycle"></i> Цикличность</h3>
+                    <p>АПЧХИ — не линейный, а циклический процесс. После нахождения решения можно вернуться к любому этапу для уточнения, улучшения или поиска альтернативных решений.</p>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="card-title"><i class="fas fa-expand-arrows-alt"></i> Системность</h3>
+                    <p>Задача рассматривается не изолированно, а в контексте всей системы: анализируются надсистема, система и подсистемы, их взаимосвязи и ресурсы.</p>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="card-title"><i class="fas fa-magic"></i> Идеальность</h3>
+                    <p>Стремление к идеальному решению, когда система сама выполняет нужную функцию без дополнительных затрат, усложнений или негативных эффектов.</p>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="card-title"><i class="fas fa-exchange-alt"></i> Превращение вредного в полезное</h3>
+                    <p>Поиск способов использовать недостатки, проблемы и вредные факторы системы для достижения полезных целей.</p>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="card-title"><i class="fas fa-search"></i> Ресурсный подход</h3>
+                    <p>Активный поиск и использование всех доступных ресурсов, включая те, которые не очевидны на первый взгляд.</p>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="card-title"><i class="fas fa-sync-alt"></i> Итеративность</h3>
+                    <p>Постепенное уточнение и улучшение решения через multiple проходов по алгоритму, каждый раз углубляя анализ и расширяя поиск.</p>
+                </div>
+            </div>
+
+            <div class="important-note">
+                <p><strong>Запомните:</strong> АПЧХИ — это не жесткая инструкция, а гибкий framework для мышления. Алгоритм можно адаптировать под конкретные задачи, добавлять или изменять этапы, комбинировать с другими методами. Главное — сохранить системный подход и стремление к идеальному решению.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Подвал -->
+    <div class="container">
+        <div class="footer-note">
+            <p>Алгоритм АПЧХИ — это живой инструмент, который развивается и совершенствуется. Начните применять его к повседневным задачам, и вы увидите, как расширяются возможности для поиска неочевидных решений.</p>
+            <p>© АПЧХИ — Алгоритм Придумывания Чокнутых Хитрых Идей | Версия 0.0.3</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Анимация появления секций при прокрутке
+            const sections = document.querySelectorAll('.section');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeIn 0.8s ease forwards';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Плавная прокрутка к разделам
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#' || !targetId.startsWith('#')) return;
+
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

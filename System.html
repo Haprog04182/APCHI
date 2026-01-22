@@ -12,7 +12,7 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         :root {
             --primary-color: #4361ee;
             --secondary-color: #3a0ca3;
@@ -28,7 +28,7 @@
             --subsystem-color: #3a86ff;
             --shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
-        
+
         body {
             font-family: 'Roboto', sans-serif;
             background-color: #f5f7ff;
@@ -36,18 +36,18 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
-        
+
         h1, h2, h3, h4 {
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-        
+
         /* Шапка */
         header {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
@@ -57,7 +57,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         header::before {
             content: "";
             position: absolute;
@@ -68,27 +68,27 @@
             background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
             opacity: 0.3;
         }
-        
+
         .header-content {
             position: relative;
             z-index: 1;
             max-width: 900px;
             margin: 0 auto;
         }
-        
+
         h1 {
             font-size: 3rem;
             margin-bottom: 15px;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
-        
+
         .subtitle {
             font-size: 1.4rem;
             opacity: 0.95;
             max-width: 800px;
             margin: 0 auto 30px;
         }
-        
+
         .back-button {
             display: inline-flex;
             align-items: center;
@@ -103,16 +103,16 @@
             transition: all 0.3s ease;
             border: 2px solid rgba(255, 255, 255, 0.3);
         }
-        
+
         .back-button:hover {
             background-color: rgba(255, 255, 255, 0.25);
             transform: translateY(-3px);
         }
-        
+
         .back-button i {
             margin-right: 10px;
         }
-        
+
         /* Основной контент */
         .section {
             background-color: white;
@@ -122,12 +122,12 @@
             box-shadow: var(--shadow);
             animation: fadeIn 0.8s ease;
         }
-        
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
+
         .section-header {
             display: flex;
             align-items: center;
@@ -135,7 +135,7 @@
             padding-bottom: 20px;
             border-bottom: 2px solid #f0f0f0;
         }
-        
+
         .section-icon {
             width: 60px;
             height: 60px;
@@ -148,37 +148,37 @@
             margin-right: 20px;
             flex-shrink: 0;
         }
-        
+
         .section-title {
             font-size: 2.2rem;
             color: var(--dark-color);
         }
-        
+
         .section-subtitle {
             font-size: 1.1rem;
             color: #666;
             margin-top: 5px;
         }
-        
+
         .content-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-top: 30px;
         }
-        
+
         .content-card {
             background-color: #f9f9f9;
             border-radius: 15px;
             padding: 25px;
             transition: all 0.3s ease;
         }
-        
+
         .content-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
         }
-        
+
         .card-title {
             font-size: 1.3rem;
             color: var(--dark-color);
@@ -186,11 +186,11 @@
             display: flex;
             align-items: center;
         }
-        
+
         .card-title i {
             margin-right: 10px;
         }
-        
+
         .highlight {
             background-color: rgba(76, 201, 240, 0.1);
             border-left: 4px solid var(--system-color);
@@ -198,7 +198,7 @@
             margin: 20px 0;
             border-radius: 0 10px 10px 0;
         }
-        
+
         .example {
             background-color: #f0f7ff;
             border-radius: 10px;
@@ -206,13 +206,13 @@
             margin: 20px 0;
             border: 1px dashed #b3d1ff;
         }
-        
+
         .example-title {
             font-weight: 600;
             color: var(--primary-color);
             margin-bottom: 10px;
         }
-        
+
         /* Визуализация системы */
         .system-visualization {
             position: relative;
@@ -224,7 +224,7 @@
             overflow: hidden;
             border: 1px solid #eee;
         }
-        
+
         .system-level {
             position: absolute;
             display: flex;
@@ -232,28 +232,28 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         .supersystem {
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
             width: 300px;
         }
-        
+
         .system {
             top: 180px;
             left: 50%;
             transform: translateX(-50%);
             width: 400px;
         }
-        
+
         .subsystem {
             top: 340px;
             left: 50%;
             transform: translateX(-50%);
             width: 500px;
         }
-        
+
         .level-label {
             font-weight: 700;
             margin-bottom: 15px;
@@ -261,19 +261,19 @@
             border-radius: 30px;
             color: white;
         }
-        
+
         .supersystem-label {
             background-color: var(--supersystem-color);
         }
-        
+
         .system-label {
             background-color: var(--system-color);
         }
-        
+
         .subsystem-label {
             background-color: var(--subsystem-color);
         }
-        
+
         .object {
             width: 80px;
             height: 80px;
@@ -289,36 +289,36 @@
             transition: all 0.3s ease;
             cursor: pointer;
         }
-        
+
         .object:hover {
             transform: scale(1.1);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
-        
+
         .object-1 {
             background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
         }
-        
+
         .object-2 {
             background: linear-gradient(135deg, #4ecdc4, #6ae2db);
         }
-        
+
         .object-3 {
             background: linear-gradient(135deg, #ffd166, #ffe18f);
         }
-        
+
         .object-4 {
             background: linear-gradient(135deg, #06d6a0, #2be9b5);
         }
-        
+
         .object-5 {
             background: linear-gradient(135deg, #118ab2, #2ba3d3);
         }
-        
+
         .object-6 {
             background: linear-gradient(135deg, #ef476f, #f56c8d);
         }
-        
+
         .objects-container {
             display: flex;
             flex-wrap: wrap;
@@ -327,26 +327,26 @@
             border-radius: 10px;
             background-color: rgba(255, 255, 255, 0.5);
         }
-        
+
         .connection {
             position: absolute;
             pointer-events: none;
         }
-        
+
         .connection-line {
             stroke-width: 3;
             fill: none;
             stroke-dasharray: 5,5;
         }
-        
+
         .balance-connection {
             stroke: var(--balance-color);
         }
-        
+
         .amplify-connection {
             stroke: var(--amplify-color);
         }
-        
+
         .connection-label {
             position: absolute;
             font-size: 0.8rem;
@@ -355,15 +355,15 @@
             border-radius: 10px;
             color: white;
         }
-        
+
         .balance-label {
             background-color: var(--balance-color);
         }
-        
+
         .amplify-label {
             background-color: var(--amplify-color);
         }
-        
+
         /* Диаграмма связей */
         .connections-diagram {
             display: flex;
@@ -374,7 +374,7 @@
             background-color: #f9f9f9;
             border-radius: 15px;
         }
-        
+
         .connection-type {
             display: flex;
             flex-direction: column;
@@ -383,24 +383,24 @@
             text-align: center;
             max-width: 300px;
         }
-        
+
         .connection-visual {
             width: 150px;
             height: 80px;
             position: relative;
             margin-bottom: 20px;
         }
-        
+
         .connection-arrow {
             position: absolute;
             width: 100%;
             height: 100%;
         }
-        
+
         .connection-description {
             font-size: 1rem;
         }
-        
+
         /* Ключевые выводы */
         .key-takeaways {
             background: linear-gradient(135deg, #f0f7ff, #e3f2fd);
@@ -408,24 +408,24 @@
             padding: 30px;
             margin-top: 40px;
         }
-        
+
         .key-takeaways h3 {
             color: var(--primary-color);
             margin-bottom: 20px;
             display: flex;
             align-items: center;
         }
-        
+
         .key-takeaways h3 i {
             margin-right: 10px;
         }
-        
+
         .takeaway-item {
             display: flex;
             align-items: flex-start;
             margin-bottom: 15px;
         }
-        
+
         .takeaway-icon {
             background-color: var(--primary-color);
             color: white;
@@ -439,90 +439,90 @@
             flex-shrink: 0;
             font-size: 0.9rem;
         }
-        
+
         /* Адаптивность */
         @media (max-width: 992px) {
             .system-visualization {
                 height: 700px;
             }
-            
+
             .supersystem {
                 top: 20px;
                 width: 250px;
             }
-            
+
             .system {
                 top: 200px;
                 width: 300px;
             }
-            
+
             .subsystem {
                 top: 450px;
                 width: 350px;
             }
-            
+
             .object {
                 width: 70px;
                 height: 70px;
                 font-size: 0.9rem;
             }
         }
-        
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.2rem;
             }
-            
+
             .subtitle {
                 font-size: 1.1rem;
             }
-            
+
             .section {
                 padding: 25px;
             }
-            
+
             .section-title {
                 font-size: 1.8rem;
             }
-            
+
             .system-visualization {
                 height: 800px;
             }
-            
+
             .connections-diagram {
                 flex-direction: column;
             }
-            
+
             .connection-type {
                 margin: 20px 0;
             }
         }
-        
+
         @media (max-width: 576px) {
             .system-visualization {
                 height: 900px;
             }
-            
+
             .supersystem {
                 width: 200px;
             }
-            
+
             .system {
                 width: 250px;
             }
-            
+
             .subsystem {
                 top: 500px;
                 width: 280px;
             }
-            
+
             .object {
                 width: 60px;
                 height: 60px;
                 font-size: 0.8rem;
             }
         }
-        
+
         .footer-note {
             text-align: center;
             margin-top: 60px;
@@ -531,7 +531,7 @@
             color: #666;
             font-size: 0.9rem;
         }
-        
+
         .important-note {
             background-color: #fff8e1;
             border-left: 4px solid #ffc107;
@@ -551,6 +551,17 @@
                 <a href="index.html" class="back-button">
                     <i class="fas fa-arrow-left"></i> Назад к алгоритму АПЧХИ
                 </a>
+                <div class="nav-buttons">
+                    <a href="index.html" class="back-button nav-button">
+                        <i class="fas fa-home"></i> На главную
+                    </a>
+                    <a href="APCHI.html" class=" back-button  nav-button">
+                        <i class="fas fa-brain"></i> Подробности АПЧХИ
+                    </a>
+                    <a href="System.html" class="back-button nav-button">
+                        <i class="fas fa-project-diagram"></i> Системное мышление
+                    </a>
+                </div>
             </div>
         </div>
     </header>
@@ -567,32 +578,32 @@
                     <p class="section-subtitle">Подход к решению проблем, при котором мы рассматриваем не отдельные элементы, а всю систему целиком</p>
                 </div>
             </div>
-            
+
             <p>Системное мышление — это способность видеть взаимосвязи между элементами, а не только сами элементы; понимать, как изменения в одной части системы влияют на другие части и на систему в целом.</p>
-            
+
             <div class="highlight">
                 <p><strong>Ключевая идея:</strong> Система — это не просто набор объектов, а совокупность объектов и связей между ними. Свойства системы определяются не столько объектами, сколько связями между ними.</p>
             </div>
-            
+
             <div class="content-grid">
                 <div class="content-card">
                     <h3 class="card-title"><i class="fas fa-cube"></i> Объекты системы</h3>
                     <p>Отдельные элементы, компоненты или части системы, которые можно выделить и идентифицировать. Объекты имеют свойства и могут выполнять функции.</p>
                     <p><strong>Примеры:</strong> В системе "автомобиль" объектами являются двигатель, колеса, руль, сиденья и т.д.</p>
                 </div>
-                
+
                 <div class="content-card">
                     <h3 class="card-title"><i class="fas fa-link"></i> Связи системы</h3>
                     <p>Отношения между объектами, которые определяют, как объекты влияют друг на друга. Связи могут быть физическими, информационными, энергетическими и др.</p>
                     <p><strong>Примеры:</strong> В системе "автомобиль" связи — это передача крутящего момента от двигателя к колесам, управление рулем и т.д.</p>
                 </div>
             </div>
-            
+
             <div class="important-note">
                 <p><strong>Важно:</strong> Часто проблема возникает не из-за неисправности объектов, а из-за неправильных или нарушенных связей между ними. Системный анализ помогает найти эти "слабые места" в связях.</p>
             </div>
         </div>
-        
+
         <!-- Визуализация системы -->
         <div class="section">
             <div class="section-header">
@@ -604,9 +615,9 @@
                     <p class="section-subtitle">Понимание иерархии систем для полного анализа проблемы</p>
                 </div>
             </div>
-            
+
             <p>Любая система существует в контексте и состоит из более мелких элементов. Анализ на разных уровнях помогает увидеть полную картину.</p>
-            
+
             <!-- Визуализация системы -->
             <div class="system-visualization" id="systemVisualization">
                 <!-- Надсистема -->
@@ -618,7 +629,7 @@
                         <div class="object object-3" data-object="3" title="Связанные системы">Соседние системы</div>
                     </div>
                 </div>
-                
+
                 <!-- Система -->
                 <div class="system-level system">
                     <div class="level-label system-label">Система (анализируемая)</div>
@@ -628,7 +639,7 @@
                         <div class="object object-6" data-object="6" title="Ресурсы системы">Ресурсы</div>
                     </div>
                 </div>
-                
+
                 <!-- Подсистема -->
                 <div class="system-level subsystem">
                     <div class="level-label subsystem-label">Подсистема</div>
@@ -639,10 +650,10 @@
                         <div class="object object-4" data-object="10" title="Компонент 4">Компонент 4</div>
                     </div>
                 </div>
-                
+
                 <!-- Связи будут добавлены через JavaScript -->
             </div>
-            
+
             <div class="content-grid">
                 <div class="content-card">
                     <h3 class="card-title"><i class="fas fa-arrow-up"></i> Надсистема</h3>
@@ -654,7 +665,7 @@
                         <li>Как изменения в надсистеме влияют на нашу систему?</li>
                     </ul>
                 </div>
-                
+
                 <div class="content-card">
                     <h3 class="card-title"><i class="fas fa-dot-circle"></i> Система</h3>
                     <p>Анализируемый объект, состоящий из взаимосвязанных элементов, предназначенный для выполнения определенных функций.</p>
@@ -665,7 +676,7 @@
                         <li>Как элементы связаны между собой?</li>
                     </ul>
                 </div>
-                
+
                 <div class="content-card">
                     <h3 class="card-title"><i class="fas fa-arrow-down"></i> Подсистема</h3>
                     <p>Элементы, из которых состоит система. Каждая подсистема может рассматриваться как отдельная система со своими элементами.</p>
@@ -677,7 +688,7 @@
                     </ul>
                 </div>
             </div>
-            
+
             <div class="example">
                 <div class="example-title">Пример: Система "Кофеварка"</div>
                 <p><strong>Надсистема:</strong> Кухня, домашнее хозяйство, утренний ритуал</p>
@@ -685,7 +696,7 @@
                 <p><strong>Подсистемы:</strong> Резервуар для воды, нагревательный элемент, фильтр, емкость для кофе, система управления</p>
             </div>
         </div>
-        
+
         <!-- Виды связей -->
         <div class="section">
             <div class="section-header">
@@ -697,9 +708,9 @@
                     <p class="section-subtitle">Уравновешивающие и увеличивающие связи: как они влияют на поведение системы</p>
                 </div>
             </div>
-            
+
             <p>Связи между элементами системы могут быть двух принципиально разных типов, которые определяют динамику поведения системы.</p>
-            
+
             <!-- Диаграмма связей -->
             <div class="connections-diagram">
                 <div class="connection-type">
@@ -721,7 +732,7 @@
                     <p class="connection-description">Стабилизирует систему, возвращает ее к равновесию. Увеличение одного элемента приводит к уменьшению другого, и наоборот.</p>
                     <p><strong>Пример:</strong> Температура в помещении и работа кондиционера: чем жарче, тем интенсивнее работает кондиционер, что снижает температуру.</p>
                 </div>
-                
+
                 <div class="connection-type">
                     <div class="connection-visual">
                         <svg class="connection-arrow" viewBox="0 0 150 80">
@@ -742,7 +753,7 @@
                     <p><strong>Пример:</strong> Интерес к продукту и его продажи: чем больше интерес, тем больше продаж, что увеличивает известность и еще больше повышает интерес.</p>
                 </div>
             </div>
-            
+
             <div class="content-grid">
                 <div class="content-card">
                     <h3 class="card-title"><i class="fas fa-search"></i> Как идентифицировать связи</h3>
@@ -752,21 +763,21 @@
                         <li><strong>Если B увеличится</strong> → увеличивающая связь</li>
                     </ul>
                 </div>
-                
+
                 <div class="content-card">
                     <h3 class="card-title"><i class="fas fa-exclamation-triangle"></i> Риски разных связей</h3>
                     <p><strong>Уравновешивающие связи</strong> обеспечивают стабильность, но могут препятствовать развитию.</p>
                     <p><strong>Увеличивающие связи</strong> способствуют росту, но могут привести к неуправляемой ситуации (например, "перегреву" системы).</p>
                 </div>
             </div>
-            
+
             <div class="example">
                 <div class="example-title">Пример: Система "Обучение сотрудников"</div>
                 <p><strong>Уравновешивающая связь:</strong> Чем больше времени сотрудник тратит на обучение, тем меньше времени у него остается на выполнение текущих задач (обратная зависимость).</p>
                 <p><strong>Увеличивающая связь:</strong> Чем больше сотрудник узнает, тем эффективнее он работает, что приводит к повышению мотивации и желанию учиться еще больше (прямая зависимость).</p>
             </div>
         </div>
-        
+
         <!-- Применение в решении проблем -->
         <div class="section">
             <div class="section-header">
@@ -778,33 +789,33 @@
                     <p class="section-subtitle">Применение системного мышления в алгоритме АПЧХИ для генерации чокнутых хитрых идей</p>
                 </div>
             </div>
-            
+
             <p>Системный анализ — мощный инструмент на этапе поиска ресурсов в алгоритме АПЧХИ. Он помогает найти скрытые возможности и превратить недостатки системы в преимущества.</p>
-            
+
             <div class="key-takeaways">
                 <h3><i class="fas fa-check-circle"></i> Ключевые принципы применения системного анализа</h3>
-                
+
                 <div class="takeaway-item">
                     <div class="takeaway-icon">1</div>
                     <div>
                         <p><strong>Анализируйте не только объекты, но и связи</strong> — часто решение заключается в изменении связей, а не самих объектов. Например, можно изменить порядок взаимодействия элементов, не меняя сами элементы.</p>
                     </div>
                 </div>
-                
+
                 <div class="takeaway-item">
                     <div class="takeaway-icon">2</div>
                     <div>
                         <p><strong>Ищите ресурсы на всех уровнях системы</strong> — ресурсами могут быть не только объекты системы, но и связи, а также элементы надсистемы и подсистемы.</p>
                     </div>
                 </div>
-                
+
                 <div class="takeaway-item">
                     <div class="takeaway-icon">3</div>
                     <div>
                         <p><strong>Определите тип связей в проблемной области</strong> — если в системе преобладают уравновешивающие связи, возможно, нужно ввести увеличивающую связь для развития. Если система неустойчива из-за увеличивающих связей, нужно добавить уравновешивающие.</p>
                     </div>
                 </div>
-                
+
                 <div class="takeaway-item">
                     <div class="takeaway-icon">4</div>
                     <div>
@@ -812,7 +823,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="content-grid">
                 <div class="content-card">
                     <h3 class="card-title"><i class="fas fa-bolt"></i> Пример применения в АПЧХИ</h3>
@@ -826,7 +837,7 @@
                     <p><strong>Обнаружено:</strong> Уравновешивающая связь между количеством совещаний и временем на разработку.</p>
                     <p><strong>Решение:</strong> Изменить форму совещаний (стоячие 15-минутные стендапы вместо часовых заседаний), что ослабляет негативную связь.</p>
                 </div>
-                
+
                 <div class="content-card">
                     <h3 class="card-title"><i class="fas fa-tools"></i> Инструменты системного анализа</h3>
                     <ul>
@@ -837,12 +848,12 @@
                     </ul>
                 </div>
             </div>
-            
+
             <div class="important-note">
                 <p><strong>Совет:</strong> При поиске решений по алгоритму АПЧХИ обязательно анализируйте систему на трех уровнях (надсистема, система, подсистема) и для каждого уровня определяйте ключевые объекты и связи между ними. Это поможет найти ресурсы, которые не очевидны при поверхностном рассмотрении.</p>
             </div>
         </div>
-        
+
         <!-- Связь с АПЧХИ -->
         <div class="section">
             <div class="section-header">
@@ -854,7 +865,7 @@
                     <p class="section-subtitle">Как системное мышление усиливает каждый этап алгоритма</p>
                 </div>
             </div>
-            
+
             <div class="content-grid">
                 <div class="content-card">
                     <h3 class="card-title"><i class="fas fa-question"></i> Этап 1: ИКР и "5 почему"</h3>
@@ -866,7 +877,7 @@
                         <li>Как ИКР повлияет на связи в системе?</li>
                     </ul>
                 </div>
-                
+
                 <div class="content-card">
                     <h3 class="card-title"><i class="fas fa-box-open"></i> Этап 2: Ресурсы</h3>
                     <p>Системное мышление расширяет поиск ресурсов: мы ищем их не только среди объектов системы, но и среди связей, а также в надсистеме и подсистемах.</p>
@@ -878,7 +889,7 @@
                         <li>Возможность изменить тип связей</li>
                     </ul>
                 </div>
-                
+
                 <div class="content-card">
                     <h3 class="card-title"><i class="fas fa-puzzle-piece"></i> Этап 3: Соединение и решение</h3>
                     <p>Системный подход помогает находить решения на пересечении ресурсов и ИКР, учитывая, как изменения повлияют на всю систему и ее связи.</p>
@@ -890,11 +901,11 @@
                     </ul>
                 </div>
             </div>
-            
+
             <div class="highlight">
                 <p><strong>Итог:</strong> Системное мышление превращает алгоритм АПЧХИ из линейного процесса в целостный подход, где каждый этап обогащается пониманием взаимосвязей и системных эффектов. Это позволяет находить не просто решения, а элегантные системные решения, которые усиливают всю систему, а не только устраняют локальную проблему.</p>
             </div>
-            
+
             <div style="text-align: center; margin-top: 30px;">
                 <a href="index.html" class="back-button" style="background-color: var(--primary-color);">
                     <i class="fas fa-arrow-left"></i> Вернуться к алгоритму АПЧХИ
@@ -915,55 +926,55 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Создание связей в визуализации системы
             const systemViz = document.getElementById('systemVisualization');
-            
+
             // Связи между уровнями системы
             const connections = [
                 // Связи между надсистемой и системой
                 { from: 'object-1', to: 'object-4', type: 'balance', label: 'Влияние среды' },
                 { from: 'object-2', to: 'object-5', type: 'balance', label: 'Требования' },
                 { from: 'object-3', to: 'object-6', type: 'amplify', label: 'Взаимодействие' },
-                
+
                 // Связи между системой и подсистемой
                 { from: 'object-4', to: 'object-7', type: 'amplify', label: 'Обеспечение' },
                 { from: 'object-5', to: 'object-8', type: 'balance', label: 'Управление' },
                 { from: 'object-6', to: 'object-9', type: 'amplify', label: 'Ресурсы' },
                 { from: 'object-4', to: 'object-10', type: 'balance', label: 'Контроль' },
-                
+
                 // Связи внутри системы
                 { from: 'object-4', to: 'object-5', type: 'balance', label: 'Обратная связь' },
                 { from: 'object-5', to: 'object-6', type: 'amplify', label: 'Распределение' },
-                
+
                 // Связи внутри подсистемы
                 { from: 'object-7', to: 'object-8', type: 'balance', label: 'Взаимодействие' },
                 { from: 'object-8', to: 'object-9', type: 'amplify', label: 'Поддержка' },
                 { from: 'object-9', to: 'object-10', type: 'balance', label: 'Обмен' }
             ];
-            
+
             // Функция для получения координат объекта
             function getObjectPosition(objectClass) {
                 const object = document.querySelector(`.${objectClass}`);
                 if (!object) return null;
-                
+
                 const rect = object.getBoundingClientRect();
                 const containerRect = systemViz.getBoundingClientRect();
-                
+
                 return {
                     x: rect.left + rect.width/2 - containerRect.left,
                     y: rect.top + rect.height/2 - containerRect.top
                 };
             }
-            
+
             // Создание связей
             connections.forEach((conn, index) => {
                 const fromPos = getObjectPosition(conn.from);
                 const toPos = getObjectPosition(conn.to);
-                
+
                 if (!fromPos || !toPos) return;
-                
+
                 // Создаем элемент связи
                 const connection = document.createElement('div');
                 connection.className = 'connection';
-                
+
                 // Создаем SVG линию
                 const svgNS = "http://www.w3.org/2000/svg";
                 const svg = document.createElementNS(svgNS, "svg");
@@ -973,47 +984,47 @@
                 svg.style.top = '0';
                 svg.style.left = '0';
                 svg.style.overflow = 'visible';
-                
+
                 const line = document.createElementNS(svgNS, "line");
                 line.setAttribute('x1', fromPos.x);
                 line.setAttribute('y1', fromPos.y);
                 line.setAttribute('x2', toPos.x);
                 line.setAttribute('y2', toPos.y);
                 line.setAttribute('class', `connection-line ${conn.type}-connection`);
-                
+
                 svg.appendChild(line);
                 connection.appendChild(svg);
-                
+
                 // Добавляем подпись связи
                 const label = document.createElement('div');
                 label.className = `connection-label ${conn.type}-label`;
                 label.textContent = conn.label;
                 label.style.left = `${(fromPos.x + toPos.x) / 2 - 40}px`;
                 label.style.top = `${(fromPos.y + toPos.y) / 2 - 10}px`;
-                
+
                 connection.appendChild(label);
                 systemViz.appendChild(connection);
             });
-            
+
             // Анимация появления объектов
             const objects = document.querySelectorAll('.object');
             objects.forEach((object, index) => {
                 object.style.opacity = '0';
                 object.style.transform = 'scale(0.5)';
-                
+
                 setTimeout(() => {
                     object.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
                     object.style.opacity = '1';
                     object.style.transform = 'scale(1)';
                 }, 100 + index * 100);
             });
-            
+
             // Интерактивность объектов
             objects.forEach(object => {
                 object.addEventListener('click', function() {
                     const objectType = this.getAttribute('data-object');
                     const objectTitle = this.getAttribute('title');
-                    
+
                     // Создаем всплывающее окно
                     const tooltip = document.createElement('div');
                     tooltip.style.position = 'absolute';
@@ -1024,40 +1035,40 @@
                     tooltip.style.zIndex = '1000';
                     tooltip.style.maxWidth = '300px';
                     tooltip.style.border = '2px solid #4361ee';
-                    
+
                     tooltip.innerHTML = `
                         <h4 style="margin-bottom: 10px; color: #4361ee;">${objectTitle}</h4>
                         <p>Это элемент системы, который выполняет определенную функцию. В системном анализе важно понимать не только свойства объекта, но и его связи с другими элементами.</p>
                         <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Нажмите в любом месте, чтобы закрыть</p>
                     `;
-                    
+
                     // Позиционируем всплывающее окно
                     const rect = this.getBoundingClientRect();
                     tooltip.style.left = `${rect.left + rect.width/2 - 150}px`;
                     tooltip.style.top = `${rect.top - 200}px`;
-                    
+
                     document.body.appendChild(tooltip);
-                    
+
                     // Закрытие при клике
                     const closeTooltip = () => {
                         document.body.removeChild(tooltip);
                         document.removeEventListener('click', closeTooltip);
                     };
-                    
+
                     setTimeout(() => {
                         document.addEventListener('click', closeTooltip);
                     }, 10);
                 });
             });
-            
+
             // Плавная прокрутка к разделам
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
-                    
+
                     const targetId = this.getAttribute('href');
                     if (targetId === '#') return;
-                    
+
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
                         window.scrollTo({
