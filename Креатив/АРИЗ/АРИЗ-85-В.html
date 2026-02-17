@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>АРИЗ-85‑В · пошаговый алгоритм для всех</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+            background: #f0f5fa;
+            color: #1a2b3c;
+            line-height: 1.5;
+            padding: 2rem 1rem;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2rem;
+            box-shadow: 0 25px 45px -18px rgba(0,40,70,0.25);
+            padding: 2.5rem 2.2rem;
+        }
+        h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            background: linear-gradient(145deg, #003153, #1b5583);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.25rem;
+            border-left: 8px solid #1b5583;
+            padding-left: 1.5rem;
+        }
+        .subhead {
+            font-size: 1.3rem;
+            color: #2e4d6e;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            padding-left: 2.3rem;
+        }
+        .story-tip {
+            background: #e8f0fe;
+            border-radius: 2rem;
+            padding: 1.4rem 2rem;
+            margin-bottom: 2.2rem;
+            border-left: 6px solid #0077be;
+            font-size: 1.2rem;
+            box-shadow: inset 0 1px 4px #cdddec;
+        }
+        .story-tip strong {
+            color: #003f6f;
+        }
+        .step {
+            background: #ffffff;
+            border-radius: 1.8rem;
+            padding: 1.8rem 2.2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 18px rgba(0,30,60,0.06);
+            border: 1px solid #dde7f0;
+            transition: border 0.2s, box-shadow 0.2s;
+        }
+        .step:hover {
+            border-color: #9bc0da;
+            box-shadow: 0 15px 30px -12px rgba(0,79,138,0.14);
+        }
+        .step h2 {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            font-size: 1.9rem;
+            font-weight: 550;
+            color: #003f6f;
+            margin-bottom: 0.7rem;
+        }
+        .step h2 span {
+            background: #1b5583;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 700;
+            width: 2.5rem;
+            height: 2.5rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            box-shadow: 0 6px 12px #1b558360;
+        }
+        .step-desc {
+            font-size: 1.1rem;
+            background: #f1f6fb;
+            padding: 1rem 1.8rem;
+            border-radius: 2rem;
+            margin: 0.5rem 0 1.5rem 0;
+            color: #014d80;
+            border-left: 6px solid #2a7ab0;
+        }
+        .example-title {
+            font-weight: 600;
+            font-size: 1.15rem;
+            margin: 1rem 0 0.8rem 0;
+            color: #1d456b;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        /* details стиль как в предыдущей версии */
+        details.example-box {
+            display: block;
+            border-radius: 1.3rem;
+            background: #f9fcff;
+            border: 1px solid #cbdbe9;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.1s;
+        }
+        details.example-box summary {
+            padding: 1.1rem 2rem 1.1rem 3.5rem;
+            font-weight: 500;
+            font-size: 1.1rem;
+            color: #0b3c61;
+            cursor: pointer;
+            list-style: none;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="%232a6f97" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>') no-repeat left 1.6rem center;
+            background-size: 1.2rem;
+            background-color: #f9fcff;
+        }
+        details.example-box[open] summary {
+            background-color: #e2edf9;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="%232a6f97" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>');
+            border-bottom: 1px solid #c5d9ec;
+            border-radius: 1.3rem 1.3rem 0 0;
+        }
+        details.example-box summary::-webkit-details-marker {
+            display: none;
+        }
+        .example-answer {
+            padding: 1.2rem 2rem 1.5rem 3.5rem;
+            background: white;
+            border-radius: 0 0 1.3rem 1.3rem;
+        }
+        .example-answer p {
+            margin-bottom: 0.6rem;
+        }
+        .example-answer ul {
+            margin: 0.6rem 0 0 1.5rem;
+        }
+        .badge {
+            background: #2a7ab0;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.2rem 0.9rem;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-left: 1rem;
+        }
+        .extra-note {
+            margin-top: 1.2rem;
+            font-size: 0.95rem;
+            color: #3d6180;
+            background: #f3f9ff;
+            padding: 0.6rem 1.5rem;
+            border-radius: 4rem;
+        }
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+            color: #5f7c9a;
+            font-size: 0.95rem;
+            border-top: 1px solid #c5d6e8;
+            padding-top: 1.8rem;
+        }
+        @media (max-width: 650px) {
+            .container { padding: 1.5rem; }
+            .step { padding: 1.3rem; }
+            h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🧩 АРИЗ-85‑В</h1>
+    <div class="subhead">Алгоритм решения изобретательских задач — понятным языком</div>
+
+    <!-- Вступление + общий пример -->
+    <div class="story-tip">
+        💡 <strong>Сквозная история:</strong> Представьте, что любимая монета закатилась в узкую щель между плинтусом и полом. Пальцы не пролезают, подцепить нечем. Как быть? Пройдём все шаги АРИЗ и найдём решение.
+    </div>
+
+    <!-- Шаг 1 -->
+    <section class="step">
+        <h2><span>1</span> Анализ задачи</h2>
+        <div class="step-desc">
+            Отбрасываем лишнее, формулируем мини‑задачу: что именно мешает, что нужно получить без сложных изменений.
+        </div>
+        <div class="example-title">🧾 Разбираем нашу проблему</div>
+        <details class="example-box">
+            <summary><strong>Как применить анализ к монете в щели?</strong></summary>
+            <div class="example-answer">
+                <p><strong>Исходная ситуация:</strong> Монета лежит в щели глубиной ~3 см, ширина щели меньше пальца. Нужно достать монету, не разбирая пол и не повреждая покрытие.</p>
+                <p><strong>Мини‑задача:</strong> Найти способ извлечь монету, используя только то, что есть под рукой (или почти ничего).</p>
+                <p>✔️ Вывод: конфликт — «инструмент должен быть тонким, чтобы пролезть, и одновременно цепким, чтобы захватить гладкий металл».</p>
+            </div>
+        </details>
+        <!-- можно добавить ещё один маленький пример, но сохраним лаконичность -->
+    </section>
+
+    <!-- Шаг 2 -->
+    <section class="step">
+        <h2><span>2</span> Анализ модели задачи</h2>
+        <div class="step-desc">
+            Находим конфликтующую пару: изделие (что обрабатываем) и инструмент (чем обрабатываем). Формулируем противоречие.
+        </div>
+        <details class="example-box">
+            <summary><strong>Кто с кем конфликтует в случае монеты?</strong></summary>
+            <div class="example-answer">
+                <p><strong>Изделие:</strong> монета (её нужно извлечь). <strong>Инструмент:</strong> пока неизвестное приспособление (палец, палочка, клей и т.п.).</p>
+                <p>🔹 <strong>Техническое противоречие:</strong> если инструмент тонкий (чтобы войти в щель), он не может создать достаточное усилие захвата; если инструмент широкий (сильный захват), он не влезает.</p>
+                <p>Уточняем: нужна тонкая «рука», которая умеет хватать.</p>
+            </div>
+        </details>
+    </section>
+
+    <!-- Шаг 3 -->
+    <section class="step">
+        <h2><span>3</span> Идеальный конечный результат (ИКР) и физическое противоречие</h2>
+        <div class="step-desc">
+            Представляем идеал: система сама выполняет нужное действие, не усложняясь. Формулируем физическое противоречие — элемент должен быть в двух состояниях сразу.
+        </div>
+        <details class="example-box">
+            <summary><strong>ИКР для монеты — звучит фантастически</strong></summary>
+            <div class="example-answer">
+                <p><strong>ИКР-1:</strong> Монета сама вылетает из щели (без участия человека).</p>
+                <p><strong>ИКР-2:</strong> Щель временно расширяется, пропускает руку, а потом сужается обратно.</p>
+                <p><strong>Физическое противоречие:</strong> Тонкая палочка (или воздух) должна быть одновременно твёрдой, чтобы толкать монету, и мягкой/липкой, чтобы захватить её. Или монета должна быть одновременно примагниченной и не примагниченной… но металл может быть не магнитным.</p>
+            </div>
+        </details>
+    </section>
+
+    <!-- Шаг 4 -->
+    <section class="step">
+        <h2><span>4</span> Мобилизация ресурсов</h2>
+        <div class="step-desc">
+            Оглядываемся: какие поля, вещества, пространство, время уже есть? Всё, что нас окружает, может стать бесплатным помощником.
+        </div>
+        <details class="example-box">
+            <summary><strong>Что можно использовать рядом с щелью?</strong></summary>
+            <div class="example-answer">
+                <p><strong>Ресурсы:</strong></p>
+                <ul>
+                    <li>💨 Воздух — можно подуть (монета лёгкая? нет, но может покатиться).</li>
+                    <li>🧲 Магнит (если есть под рукой).</li>
+                    <li>💧 Жидкость (вода, масло) — залить щель, монета всплывёт? Только если она плавает.</li>
+                    <li>🍬 Липкие вещества: жвачка, скотч, смола.</li>
+                    <li>❄️ Холод/тепло (вода замёрзнет и вытолкнет монету льдом).</li>
+                    <li>🕰️ Время — может, монета сама выпадет от вибрации?</li>
+                </ul>
+            </div>
+        </details>
+    </section>
+
+    <!-- Шаг 5 -->
+    <section class="step">
+        <h2><span>5</span> Применение информационного фонда (приёмы, эффекты)</h2>
+        <div class="step-desc">
+            Вспоминаем типовые приёмы ТРИЗ: посредник, дробление, наоборот, динамичность, использование фазовых переходов и т.д.
+        </div>
+        <details class="example-box">
+            <summary><strong>Какие приёмы могут сработать с монетой?</strong></summary>
+            <div class="example-answer">
+                <ul>
+                    <li><strong>Посредник:</strong> намазать клеем тонкую палочку — приклеить монету и вытащить.</li>
+                    <li><strong>Использование пены/воздуха:</strong> создать давление с одной стороны, чтобы монету выдавило (например, резко хлопнуть ладонью с другой стороны щели).</li>
+                    <li><strong>Фазовый переход:</strong> залить воду, заморозить — лёд расширится и вытолкнет монету наверх. Или приклеить к льдинке.</li>
+                    <li><strong>Магнитное поле:</strong> если монета стальная, магнит на верёвочке решит всё.</li>
+                    <li><strong>Сделать наоборот:</strong> не доставать монету, а расширить щель (временная деформация плинтуса).</li>
+                </ul>
+            </div>
+        </details>
+    </section>
+
+    <!-- Шаг 6 -->
+    <section class="step">
+        <h2><span>6</span> Изменение и/или замена задачи</h2>
+        <div class="step-desc">
+            Если решение не найдено или слишком сложное, пробуем переформулировать задачу, отступить на шаг назад, решить другую, более общую задачу.
+        </div>
+        <details class="example-box">
+            <summary><strong>Не выходит достать? Может, задача другая?</strong></summary>
+            <div class="example-answer">
+                <p><strong>Обходные пути:</strong></p>
+                <ul>
+                    <li>❓ А нужно ли доставать именно эту монету? Если она мелкая, может, проще купить новую?</li>
+                    <li>❓ Можно не доставать, а использовать щель как копилку — теперь это «особое место».</li>
+                    <li>❓ Вместо монеты достать что-то другое, чтобы она выпала сама (например, выдуть пыль, изменить влажность).</li>
+                    <li>❓ Перейти к более общей задаче: «как извлекать предметы из узких полостей» — тогда поможет пылесос с узкой насадкой (это уже новый инструмент).</li>
+                </ul>
+                <p>Иногда смена фокуса даёт более простое решение.</p>
+            </div>
+        </details>
+    </section>
+
+    <!-- Шаг 7 -->
+    <section class="step">
+        <h2><span>7</span> Анализ способа устранения физического противоречия</h2>
+        <div class="step-desc">
+            Проверяем, как найденная идея устраняет противоречие, не появляются ли новые проблемы. Дорабатываем.
+        </div>
+        <details class="example-box">
+            <summary><strong>Разбираем одно из решений (например, жвачка на палочке)</strong></summary>
+            <div class="example-answer">
+                <p><strong>Идея:</strong> тонкая палочка с разжёванной жвачкой на конце. Палочка пролезает, жвачка прилипает к монете — вытаскиваем.</p>
+                <p>✔️ <strong>Противоречие решено:</strong> инструмент тонкий (палочка) + липкий (жвачка) позволяют захватить.</p>
+                <p><strong>Новые вопросы:</strong> жвачка может оставить след на монете или полу, может отклеиться. Уточнение: использовать сладкую жвачку (легко смыть) или заменить её кусочком двухстороннего скотча.</p>
+                <p><strong>Альтернатива с морозилкой:</strong> залить чуть воды, подождать мороза (или посыпать солью со льдом) — лёд вытолкнет монету. Тут противоречие «твёрдое/жидкое» разрешается фазовым переходом.</p>
+            </div>
+        </details>
+        <div class="extra-note">
+            ⭐ В итоге для монеты лучше всего сработает либо магнит (если монета магнитная), либо жвачка/скотч на палочке. А если под рукой только вода — можно заморозить. АРИЗ помог перебрать варианты.
+        </div>
+    </section>
+
+    <!-- Завершение -->
+    <footer>
+        🧠 АРИЗ-85‑В помогает мыслить пошагово и видеть неочевидные ресурсы. Каждый шаг приближает к идеальному решению без лишних затрат.
+    </footer>
+</div>
+</body>
+</html>

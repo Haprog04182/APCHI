@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ru"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Методы РТВ (Развитие творческого воображения)</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+            background: #f4f7fb;
+            color: #1e2b3a;
+            line-height: 1.5;
+            padding: 2rem 1rem;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2rem;
+            box-shadow: 0 20px 40px -10px rgba(0,20,40,0.2);
+            padding: 2.5rem 2rem;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            border-left: 8px solid #2a5298;
+            padding-left: 1.5rem;
+        }
+        .subhead {
+            font-size: 1.2rem;
+            color: #2c3e50;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            padding-left: 2.3rem;
+        }
+        .method {
+            background: #ffffff;
+            border-radius: 1.5rem;
+            padding: 1.8rem 2rem;
+            margin-bottom: 2.2rem;
+            box-shadow: 0 6px 14px rgba(0,10,30,0.05);
+            border: 1px solid #e9eef3;
+            transition: all 0.2s;
+        }
+        .method:hover {
+            border-color: #b0c8da;
+            box-shadow: 0 12px 24px -8px rgba(20,60,120,0.15);
+        }
+        .method h2 {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.9rem;
+            font-weight: 500;
+            color: #0b2b4a;
+            margin-bottom: 0.6rem;
+        }
+        .method h2 span {
+            background: #1e3c72;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            width: 2.4rem;
+            height: 2.4rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px #1e3c7230;
+        }
+        .description {
+            font-size: 1.1rem;
+            background: #edf3fa;
+            padding: 1rem 1.5rem;
+            border-radius: 2rem;
+            margin: 1rem 0 1.8rem 0;
+            color: #014785;
+            border-left: 6px solid #2a6f97;
+            font-style: italic;
+        }
+        .examples-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #1f3a5f;
+            letter-spacing: -0.2px;
+        }
+        .example-card {
+            margin-bottom: 0.9rem;
+            border-radius: 1.2rem;
+            background: #f9fcff;
+            border: 1px solid #dde7f0;
+            transition: 0.1s;
+        }
+        /* Стилизация details */
+        details.example-card {
+            display: block;
+            overflow: hidden;
+        }
+        details.example-card summary {
+            padding: 1.2rem 1.8rem;
+            font-weight: 500;
+            font-size: 1.15rem;
+            color: #0d3f66;
+            cursor: pointer;
+            list-style: none;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="%232a6f97" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>') no-repeat left 1.5rem center;
+            background-size: 1.2rem;
+            padding-left: 3.5rem;
+            transition: background-color 0.2s;
+        }
+        details.example-card[open] summary {
+            background-color: #e4eff9;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="%232a6f97" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>');
+            border-bottom: 1px dashed #b3cee5;
+            border-radius: 1.2rem 1.2rem 0 0;
+        }
+        details.example-card summary::-webkit-details-marker {
+            display: none;
+        }
+        details.example-card summary:hover {
+            background-color: #e1edf8;
+        }
+        .answer {
+            padding: 1.2rem 2rem 1.5rem 3.5rem;
+            background: #ffffff;
+            border-radius: 0 0 1.2rem 1.2rem;
+        }
+        .answer p {
+            margin: 0.5rem 0;
+        }
+        .answer ul {
+            margin: 0.5rem 0 0 1.2rem;
+        }
+        .answer li {
+            margin-bottom: 0.4rem;
+        }
+        .badge {
+            background: #2a6f97;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.15rem 0.7rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-left: 0.8rem;
+            vertical-align: middle;
+        }
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+            color: #5d7184;
+            font-size: 0.9rem;
+            border-top: 1px solid #d0dfec;
+            padding-top: 1.8rem;
+        }
+        @media (max-width: 700px) {
+            .container { padding: 1.5rem; }
+            .method { padding: 1.2rem; }
+            h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🧠 Методы РТВ</h1>
+    <div class="subhead">Развитие творческого воображения — инструменты для управления фантазией и преодоления стереотипов</div>
+
+    <!-- 1. Метод фокальных объектов -->
+    <section class="method">
+        <h2><span>1</span> Метод фокальных объектов (МФО)</h2>
+        <div class="description">Признаки случайных объектов переносятся на заданный объект (фокус), что даёт неожиданные сочетания.</div>
+        <div class="examples-title">🔍 Примеры (нажмите на вопрос, чтобы узнать идеи)</div>
+
+        <details class="example-card">
+            <summary><strong>Часы</strong> + случайный объект «Елка»?</summary>
+            <div class="answer">
+                <p><strong>Идеи:</strong></p>
+                <ul>
+                    <li>🌲 «Зелёные» часы на солнечной батарее (экологичные).</li>
+                    <li>🕒 Часы с колючим дизайном — шипы вместо цифр.</li>
+                    <li>🎄 Праздничные часы с мишурой и встроенной гирляндой.</li>
+                </ul>
+            </div>
+        </details>
+
+        <details class="example-card">
+            <summary><strong>Дверь</strong> + случайный объект «Море»?</summary>
+            <div class="answer">
+                <p><strong>Идеи:</strong></p>
+                <ul>
+                    <li>🌊 Дверь с эффектом волны — гнутая форма, имитация воды.</li>
+                    <li>🐠 Дверь-аквариум со встроенной ёмкостью для рыбок.</li>
+                    <li>💡 Дверь с подсветкой «цвета морской волны», меняющей оттенок.</li>
+                </ul>
+            </div>
+        </details>
+
+        <details class="example-card">
+            <summary><strong>Ручка</strong> + случайный объект «Фонарик»?</summary>
+            <div class="answer">
+                <p><strong>Идеи:</strong></p>
+                <ul>
+                    <li>🔦 Ручка с подсветкой для письма в темноте.</li>
+                    <li>✨ Неоновый стержень, светящийся в ультрафиолете.</li>
+                    <li>🔋 Ручка со встроенным power bank для зарядки телефона.</li>
+                </ul>
+            </div>
+        </details>
+    </section>
+
+    <!-- 2. Морфологический анализ -->
+    <section class="method">
+        <h2><span>2</span> Морфологический анализ</h2>
+        <div class="description">Объект раскладывается на оси (признаки), для каждой оси подбираются варианты, затем перебираются все сочетания.</div>
+        <div class="examples-title">📦 Примеры</div>
+
+        <details class="example-card">
+            <summary>Новый вид упаковки: форма (шар/куб/цилиндр), материал (стекло/пластик/фольга), открывание (крышка/клапан/отрыв)?</summary>
+            <div class="answer">
+                <p><strong>Необычные сочетания:</strong></p>
+                <ul>
+                    <li>🥫 Куб из фольги с клапаном — прообраз тетрапака.</li>
+                    <li>🔮 Стеклянный шар с отрывным горлышком (бутылка-амфора).</li>
+                    <li>📦 Цилиндр из пластика с крышкой-дозатором.</li>
+                </ul>
+            </div>
+        </details>
+
+        <details class="example-card">
+            <summary>Обувь: материал верха (кожа/текстиль/мембрана), подошва (сплошная/рельефная/каблук), фиксация (шнурки/липучки/молния)?</summary>
+            <div class="answer">
+                <p><strong>Сочетания:</strong></p>
+                <ul>
+                    <li>👟 Текстильные кроссовки на рельефной подошве с боковой молнией.</li>
+                    <li>👠 Кожаные туфли на каблуке с фиксацией-липучкой (удобно и стильно).</li>
+                    <li>🥾 Мембранные ботинки на сплошной подошве со шнуровкой (классические треккинговые).</li>
+                </ul>
+            </div>
+        </details>
+
+        <details class="example-card">
+            <summary>Рекламный носитель: место (земля/воздух/вода), форма (прямоугольник/шар/объект), динамика (статичный/движущийся)?</summary>
+            <div class="answer">
+                <p><strong>Креативные варианты:</strong></p>
+                <ul>
+                    <li>🎈 Рекламные шары, дрейфующие по воде (место+форма+движение).</li>
+                    <li>✈️ Реклама на небе (воздух, прямоугольник, движущийся — кукурузники).</li>
+                    <li>🛣️ Реклама на асфальте, меняющая рисунок от протектора машин.</li>
+                </ul>
+            </div>
+        </details>
+    </section>
+
+    <!-- 3. Метод маленьких человечков (ММЧ) -->
+    <section class="method">
+        <h2><span>3</span> Метод маленьких человечков (ММЧ)</h2>
+        <div class="description">Моделирование физических процессов с помощью воображаемых человечков, которые могут взаимодействовать.</div>
+        <div class="examples-title">🧑‍🤝‍🧑 Примеры</div>
+
+        <details class="example-card">
+            <summary>Почему вода жидкая, а лёд твёрдый? (объясните через человечков)</summary>
+            <div class="answer">
+                <p><strong>Модель:</strong></p>
+                <ul>
+                    <li>💧 Вода: человечки держатся за руки, но легко скользят и меняют положение.</li>
+                    <li>❄️ Лёд: человечки стоят плотно, крепко взявшись за руки (кристаллическая решётка).</li>
+                    <li>💨 Пар: человечки разбежались в разные стороны и не держатся друг за друга.</li>
+                </ul>
+            </div>
+        </details>
+
+        <details class="example-card">
+            <summary>Как объяснить протечку муки из дырявого мешка?</summary>
+            <div class="answer">
+                <p><strong>Решение:</strong> В мешке сидят человечки 
+(частицы муки). В дыру они вываливаются. Чтобы починить, нужно поставить
+ «стражника» (заплатку) или приказать соседним человечкам взяться за 
+руки и перекрыть проход.</p>
+            </div>
+        </details>
+
+        <details class="example-card">
+            <summary>Как работает эмульгатор в майонезе (масло и вода не смешиваются)?</summary>
+            <div class="answer">
+                <p><strong>Модель:</strong> Человечки масла не дружат с 
+человечками воды. Появляются человечки-миротворцы (молекулы лецитина). 
+Они одной рукой держатся за масло, другой — за воду, не давая 
+компонентам разбежаться. Так образуется стабильная эмульсия.</p>
+            </div>
+        </details>
+    </section>
+
+    <!-- 4. Оператор РВС (Размер — Время — Стоимость) -->
+    <section class="method">
+        <h2><span>4</span> Оператор РВС</h2>
+        <div class="description">Мысленное изменение размеров, времени 
+или стоимости объекта до фантастических пределов.(от бесконечно малых 
+велечин, до бесконечно больших)</div>
+        <div class="examples-title">📏⏱️💰 Примеры для задачи «Уборка листвы»</div>
+
+        <details class="example-card">
+            <summary>Что если листья станут размером со стадион?</summary>
+            <div class="answer">
+                <p><strong>Идеи:</strong> Листья размером со стадион — убирать их придётся лазерами, разрезая на части. Или использовать гигантские воздуходувки.</p>
+            </div>
+        </details>
+
+        <details class="example-card">
+            <summary>Что если листопад длится всего 1 секунду?</summary>
+            <div class="answer">
+                <p><strong>Идеи:</strong> Нужна мгновенная реакция: взрывное сдувание, мощные пылесосы или сбор листвы прямо в воздухе.</p>
+            </div>
+        </details>
+
+        <details class="example-card">
+            <summary>Что если за уборку листвы доплачивают огромные деньги?</summary>
+            <div class="answer">
+                <p><strong>Идеи:</strong> Люди будут драться за право убирать, появятся соревнования дворников, листва станет ценным ресурсом.</p>
+            </div>
+        </details>
+    </section>
+
+    <!-- 5. Синектика (метод аналогий) -->
+    <section class="method">
+        <h2><span>5</span> Синектика (аналогии)</h2>
+        <div class="description">Использование прямой, личной, символической и фантастической аналогии для поиска идей.</div>
+        <div class="examples-title">🧩 Примеры для задачи «Новый двигатель для лодки»</div>
+
+        <details class="example-card">
+            <summary>Прямая аналогия: как движутся кальмар, утка, змея?</summary>
+            <div class="answer">
+                <p><strong>Идеи:</strong> 
+                </p><ul>
+                    <li>🦑 Реактивное движение (как кальмар) — водомётный двигатель.</li>
+                    <li>🦆 Перепончатые ласты (как у утки) — гибкие движители.</li>
+                    <li>🐍 Извивающееся движение (как водяная змея) — волнообразный двигатель.</li>
+                </ul>
+                <p></p>
+            </div>
+        </details>
+
+        <details class="example-card">
+            <summary>Личная аналогия (эмпатия): представь себя винтом лодки. Что чувствуешь?</summary>
+            <div class="answer">
+                <p><strong>Ощущения и идеи:</strong> Чувствую 
+сопротивление воды, кавитацию (пузырьки мешают). Можно изменить форму 
+лопастей так, чтобы пузырьки схлопывались полезно, или сделать винт из 
+эластичного материала, подстраивающегося под поток.</p>
+            </div>
+        </details>
+
+        <details class="example-card">
+            <summary>Символическая аналогия: придумайте поэтическую формулировку («жидкий клин», «застывший взрыв»).</summary>
+            <div class="answer">
+                <p><strong>Идеи:</strong> 
+                </p><ul>
+                    <li>💥 «Застывший взрыв» — импульсный двигатель на микровзрывах.</li>
+                    <li>🌊 «Жидкий клин» — нос лодки, который «впрыскивает» воду под себя, уменьшая трение.</li>
+                    <li>🔇 «Неслышный крик» — бесшумный магнитогидродинамический двигатель.</li>
+                </ul>
+                <p></p>
+            </div>
+        </details>
+    </section>
+
+    <!-- 6. Метод снежного кома -->
+    <section class="method">
+        <h2><span>6</span> Метод снежного кома</h2>
+        <div class="description">Последовательное наращивание фантастических свойств, где каждое новое свойство вытекает из предыдущего.</div>
+        <div class="examples-title">❄️ Примеры цепочек</div>
+
+        <details class="example-card">
+            <summary>Карандаш: исходное свойство «сам затачивается» → что дальше?</summary>
+            <div class="answer">
+                <p><strong>Снежный ком:</strong>
+                </p><ol style="margin-left: 1rem;">
+                    <li>Карандаш сам затачивается.</li>
+                    <li>Раз он точится сам, он накапливает стружку в пенале.</li>
+                    <li>Он умеет перерабатывать стружку обратно в грифель → вечный карандаш.</li>
+                </ol>
+                <p></p>
+            </div>
+        </details>
+
+        <details class="example-card">
+            <summary>Книга: картинки движутся → ...</summary>
+            <div class="answer">
+                <p><strong>Цепочка:</strong>
+                </p><ol>
+                    <li>Картинки в книге движутся.</li>
+                    <li>Персонажи могут выходить за пределы страниц (голограмма).</li>
+                    <li>Читатель может войти внутрь сюжета и менять его (VR-реальность).</li>
+                </ol>
+                <p></p>
+            </div>
+        </details>
+
+        <details class="example-card">
+            <summary>Зонт: сам определяет дождь → ...</summary>
+            <div class="answer">
+                <p><strong>Развитие:</strong>
+                </p><ol>
+                    <li>Зонт сам определяет, когда пойдёт дождь.</li>
+                    <li>Он сам вылетает из сумки и раскрывается над хозяином.</li>
+                    <li>Он не просто укрывает, а отталкивает капли так сильно, что они отлетают обратно в тучу, разгоняя её.</li>
+                </ol>
+                <p></p>
+            </div>
+        </details>
+    </section>
+
+    <footer>
+        🌟 Нажмите на любой вопрос, чтобы раскрыть ответ и вдохновиться примерами. <br> Методы РТВ помогают ломать стереотипы и создавать новое.
+    </footer>
+</div>
+
+</body></html>

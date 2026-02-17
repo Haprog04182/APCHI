@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>40 приёмов ТРИЗ + расширенный фонд | Полный список</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+            background: #f0f5fa;
+            color: #1a2b3c;
+            line-height: 1.5;
+            padding: 2rem 1rem;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2rem;
+            box-shadow: 0 25px 45px -18px rgba(0,40,70,0.25);
+            padding: 2.5rem 2rem;
+        }
+        h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            background: linear-gradient(145deg, #003153, #1b5583);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.25rem;
+            border-left: 8px solid #1b5583;
+            padding-left: 1.5rem;
+        }
+        .subhead {
+            font-size: 1.3rem;
+            color: #2e4d6e;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            padding-left: 2.3rem;
+        }
+        .info-box {
+            background: #e8f0fe;
+            border-radius: 2rem;
+            padding: 1.4rem 2rem;
+            margin-bottom: 2.5rem;
+            border-left: 6px solid #0077be;
+            font-size: 1.1rem;
+            box-shadow: inset 0 1px 4px #cdddec;
+        }
+        .info-box strong {
+            color: #003f6f;
+        }
+        .badge-new {
+            background: #d43f1a;
+            color: white;
+            font-size: 0.8rem;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            margin-left: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Таблица приёмов */
+        .principles-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .principle-card {
+            background: #ffffff;
+            border-radius: 1.5rem;
+            padding: 0.1rem 1.8rem 1.2rem 1.8rem;
+            border: 1px solid #dde7f0;
+            box-shadow: 0 4px 12px rgba(0,30,60,0.03);
+            transition: 0.1s;
+        }
+        .principle-card:hover {
+            border-color: #9bc0da;
+            box-shadow: 0 8px 20px -10px #1b558340;
+        }
+        .principle-header {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 0.7rem;
+        }
+        .principle-num {
+            background: #1b5583;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            width: 2.4rem;
+            height: 2.4rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .principle-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #003f6f;
+        }
+        .principle-desc {
+            margin-left: 3.5rem;
+            margin-bottom: 0.8rem;
+            font-style: italic;
+            color: #1d4a72;
+        }
+        .examples {
+            margin-left: 3.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 0.8rem;
+        }
+        .example-item {
+            background: #edf3fa;
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            color: #014d80;
+            border-left: 3px solid #2a7ab0;
+        }
+
+        /* расширенный фонд (подприёмы) */
+        .subprinciples-block {
+            background: #f3f9ff;
+            border-radius: 1.8rem;
+            padding: 1.5rem 2rem;
+            margin-top: 2.5rem;
+            border: 1px solid #c5d9ec;
+        }
+        .subprinciples-block h3 {
+            font-size: 1.8rem;
+            color: #003153;
+            margin-bottom: 0.8rem;
+        }
+        .sub-list {
+            columns: 2 300px;
+            column-gap: 2rem;
+            list-style: none;
+        }
+        .sub-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.8rem;
+            position: relative;
+        }
+        .sub-list li::before {
+            content: "▹";
+            color: #1b5583;
+            font-weight: bold;
+            position: absolute;
+            left: 0.2rem;
+        }
+
+        /* стандарты (76) */
+        .standards-block {
+            background: #e5eff9;
+            border-radius: 1.8rem;
+            padding: 1.5rem 2rem;
+            margin-top: 2rem;
+            border-left: 8px solid #1b5583;
+        }
+        .footnote {
+            margin-top: 2rem;
+            font-size: 0.95rem;
+            color: #3a5e7e;
+            text-align: center;
+        }
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+            color: #5f7c9a;
+            border-top: 1px solid #c5d6e8;
+            padding-top: 1.8rem;
+        }
+        @media (max-width: 700px) {
+            .container { padding: 1.5rem; }
+            .principle-header { flex-wrap: wrap; }
+            .examples { margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>⚙️ 40 приёмов ТРИЗ</h1>
+    <div class="subhead">Полный список приёмов разрешения технических противоречий + расширенный фонд (подприёмы и стандарты)</div>
+
+    <div class="info-box">
+        <strong>Г.С. Альтшуллер</strong> выделил 40 основных приёмов на основе анализа 40 000 сильных патентов. Позже каждый приём оброс <strong>«изотопами»</strong> — разновидностями, поэтому фактическое число инструментов превышает 100 [<a href="#">1</a>]. Современные исследования расширяют их до 160 операторов [<a href="#">4</a>]. Ниже — полный канонический список с примерами из техники, бизнеса и повседневной жизни.
+    </div>
+
+    <!-- СПИСОК 40 ПРИЁМОВ (нумерация сквозная) -->
+    <div class="principles-grid">
+        <!-- 1. Дробление -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">1</span>
+                <span class="principle-name">Дробление</span>
+            </div>
+            <div class="principle-desc">Разделить объект на независимые части; сделать объект разборным; увеличить степень дробления.</div>
+            <div class="examples">
+                <span class="example-item">Многоступенчатый компрессор турбонаддува [7]</span>
+                <span class="example-item">Перчатки вместо варежек [9]</span>
+                <span class="example-item">Разбивка проекта на этапы (WBS) [3]</span>
+            </div>
+        </div>
+        <!-- 2. Вынесение -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">2</span>
+                <span class="principle-name">Вынесение</span>
+            </div>
+            <div class="principle-desc">Отделить мешающую часть или свойство, или выделить единственно нужное.</div>
+            <div class="examples">
+                <span class="example-item">Двигатель сзади автобуса (больше мест) [7]</span>
+                <span class="example-item">Аутсорсинг непрофильных функций [3]</span>
+                <span class="example-item">Холодный впуск двигателя (в стороне от тепла) [7]</span>
+            </div>
+        </div>
+        <!-- 3. Местное качество -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">3</span>
+                <span class="principle-name">Местное качество</span>
+            </div>
+            <div class="principle-desc">Перейти от однородной структуры к неоднородной; разные части — разные функции.</div>
+            <div class="examples">
+                <span class="example-item">Стратифицированный заряд (богатая смесь у свечи) [7]</span>
+                <span class="example-item">Разные углы лопаток вентилятора [7]</span>
+                <span class="example-item">SWOT-анализ для каждого сегмента рынка [3]</span>
+            </div>
+        </div>
+        <!-- 4. Асимметрия -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">4</span>
+                <span class="principle-name">Асимметрия</span>
+            </div>
+            <div class="principle-desc">Перейти от симметричной формы к асимметричной; усилить асимметрию.</div>
+            <div class="examples">
+                <span class="example-item">Впускной клапан больше выпускного [7]</span>
+                <span class="example-item">Дифференциал с разными полуосями [7]</span>
+                <span class="example-item">Асимметричные статистические распределения [3]</span>
+            </div>
+        </div>
+        <!-- 5. Объединение -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">5</span>
+                <span class="principle-name">Объединение</span>
+            </div>
+            <div class="principle-desc">Соединить однородные или смежные объекты; объединить во времени.</div>
+            <div class="examples">
+                <span class="example-item">Интегрированный радиатор и интеркулер [7]</span>
+                <span class="example-item">Катамаран из двух лодок [9]</span>
+                <span class="example-item">Параллельный инжиниринг [3]</span>
+            </div>
+        </div>
+        <!-- 6. Универсальность -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">6</span>
+                <span class="principle-name">Универсальность</span>
+            </div>
+            <div class="principle-desc">Объект выполняет несколько функций, eliminating need for others.</div>
+            <div class="examples">
+                <span class="example-item">Несущий кузов (монокок) [7]</span>
+                <span class="example-item">Турбина с изменяемой геометрией (и наддув, и EGR) [7]</span>
+                <span class="example-item">Многофункциональные стандарты ISO [3]</span>
+            </div>
+        </div>
+        <!-- 7. Матрёшка -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">7</span>
+                <span class="principle-name">Матрешка</span>
+            </div>
+            <div class="principle-desc">Один объект внутри другого, тот внутри третьего; проход через полость.</div>
+            <div class="examples">
+                <span class="example-item">Каналы воды и масла внутри блока цилиндров [7]</span>
+                <span class="example-item">Воздушный фильтр внутри впускной трубы [7]</span>
+                <span class="example-item">Иерархия стандартов ISO 9000 [3]</span>
+            </div>
+        </div>
+        <!-- 8. Антивес -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">8</span>
+                <span class="principle-name">Антивес</span>
+            </div>
+            <div class="principle-desc">Скомпенсировать вес соединением с другим объектом, имеющим подъемную силу, или взаимодействием со средой.</div>
+            <div class="examples">
+                <span class="example-item">Противовесы коленвала [7]</span>
+                <span class="example-item">Поплавок карбюратора [7]</span>
+                <span class="example-item">Воздушные шарики для кошки (стихи Хармса) [9]</span>
+            </div>
+        </div>
+        <!-- 9. Предварительное антидействие -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">9</span>
+                <span class="principle-name">Предварительное антидействие</span>
+            </div>
+            <div class="principle-desc">Заранее создать напряжение, противоположное вредному рабочему; заменить действие антидействием.</div>
+            <div class="examples">
+                <span class="example-item">Предварительно напряженные спицы колеса [7]</span>
+                <span class="example-item">Торсион, закрученный против крена [7]</span>
+                <span class="example-item">FMEA — анализ отказов до их появления [3]</span>
+            </div>
+        </div>
+        <!-- 10. Предварительное действие -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">10</span>
+                <span class="principle-name">Предварительное действие</span>
+            </div>
+            <div class="principle-desc">Заранее выполнить требуемое изменение; расставить объекты для немедленного использования.</div>
+            <div class="examples">
+                <span class="example-item">Регулировочные шайбы (шимы) при сборке [7]</span>
+                <span class="example-item">Антикоррозийная обработка днища [7]</span>
+                <span class="example-item">Предварительный опрос заказчиков [3]</span>
+            </div>
+        </div>
+        <!-- 11. Заранее подложенная подушка -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">11</span>
+                <span class="principle-name">Заранее подложенная подушка</span>
+            </div>
+            <div class="principle-desc">Компенсировать невысокую надежность аварийными средствами.</div>
+            <div class="examples">
+                <span class="example-item">Подушки безопасности [7]</span>
+                <span class="example-item">Страховочная сетка в цирке [9]</span>
+                <span class="example-item">Резервный генератор</span>
+            </div>
+        </div>
+        <!-- 12. Эквипотенциальность -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">12</span>
+                <span class="principle-name">Эквипотенциальность</span>
+            </div>
+            <div class="principle-desc">Ограничить изменения положения в потенциальном поле (например, исключить подъем/опускание).</div>
+            <div class="examples">
+                <span class="example-item">Смотровая яма в гараже (не надо поднимать авто) [7]</span>
+                <span class="example-item">Колесные платформы для перемещения станков</span>
+            </div>
+        </div>
+        <!-- 13. Наоборот -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">13</span>
+                <span class="principle-name">Наоборот</span>
+            </div>
+            <div class="principle-desc">Сделать обратное действие; подвижное сделать неподвижным; перевернуть.</div>
+            <div class="examples">
+                <span class="example-item">Рекуперативное торможение (мотор — генератор) [7]</span>
+                <span class="example-item">Обратная продувка фильтра [7]</span>
+                <span class="example-item">Съёмка прыжка наоборот (спрыгивание) [9]</span>
+            </div>
+        </div>
+        <!-- 14. Сфероидальность -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">14</span>
+                <span class="principle-name">Сфероидальность / кривизна</span>
+            </div>
+            <div class="principle-desc">Перейти от прямолинейных частей к криволинейным; использовать ролики, шары, спирали, центробежную силу.</div>
+            <div class="examples">
+                <span class="example-item">Скругленные углы кузова (аэродинамика) [7]</span>
+                <span class="example-item">Изогнутые лопатки компрессора [7]</span>
+                <span class="example-item">Циклонный пылеуловитель [7]</span>
+            </div>
+        </div>
+        <!-- 15. Динамичность -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">15</span>
+                <span class="principle-name">Динамичность</span>
+            </div>
+            <div class="principle-desc">Характеристики должны меняться, быть оптимальными; разделить на подвижные части.</div>
+            <div class="examples">
+                <span class="example-item">Турбина с изменяемой геометрией [7]</span>
+                <span class="example-item">Активное гашение вибраций [7]</span>
+                <span class="example-item">Вариатор CVT [7]</span>
+            </div>
+        </div>
+        <!-- 16. Частичное или избыточное действие -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">16</span>
+                <span class="principle-name">Частичное или избыточное действие</span>
+            </div>
+            <div class="principle-desc">Если трудно получить 100% требуемого эффекта, возьми чуть меньше или чуть больше.</div>
+            <div class="examples">
+                <span class="example-item">Lean NOx trap — избыток HC для восстановления [7]</span>
+                <span class="example-item">ABS — полное торможение и отпускание [7]</span>
+                <span class="example-item">Перелив топлива с обраткой [7]</span>
+            </div>
+        </div>
+        <!-- 17. Переход в другое измерение -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">17</span>
+                <span class="principle-name">Переход в другое измерение</span>
+            </div>
+            <div class="principle-desc">Использовать многоэтажную компоновку, наклон, обратную сторону, многомерность.</div>
+            <div class="examples">
+                <span class="example-item">Лента Мёбиуса (удвоение длины записи) [9]</span>
+                <span class="example-item">Многослойные печатные платы</span>
+                <span class="example-item">Автостоянка в несколько ярусов</span>
+            </div>
+        </div>
+        <!-- 18. Механическая вибрация -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">18</span>
+                <span class="principle-name">Механическая вибрация</span>
+            </div>
+            <div class="principle-desc">Использовать колебания, вибрацию, резонанс, ультразвук.</div>
+            <div class="examples">
+                <span class="example-item">Вибрационное уплотнение бетона</span>
+                <span class="example-item">Ультразвуковая сварка</span>
+                <span class="example-item">Вибрационный транспортёр</span>
+            </div>
+        </div>
+        <!-- 19. Периодическое действие -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">19</span>
+                <span class="principle-name">Периодическое действие</span>
+            </div>
+            <div class="principle-desc">Перейти от непрерывного к периодическому; использовать паузы.</div>
+            <div class="examples">
+                <span class="example-item">Импульсный впрыск топлива</span>
+                <span class="example-item">Прерывистый режим сварки для уменьшения нагрева</span>
+            </div>
+        </div>
+        <!-- 20. Непрерывность полезного действия -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">20</span>
+                <span class="principle-name">Непрерывность полезного действия</span>
+            </div>
+            <div class="principle-desc">Работать без холостого хода; все части должны работать с полной нагрузкой.</div>
+            <div class="examples">
+                <span class="example-item">Конвейер с непрерывной загрузкой</span>
+                <span class="example-item">Маятниковый режим резания (туда-сюда)</span>
+            </div>
+        </div>
+        <!-- 21. Проскок (рывок) -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">21</span>
+                <span class="principle-name">Проскок / рывок</span>
+            </div>
+            <div class="principle-desc">Вести процесс или отдельные этапы на большой скорости.</div>
+            <div class="examples">
+                <span class="example-item">Сверление с ультразвуком</span>
+                <span class="example-item">Быстрая закалка (рывок температуры)</span>
+            </div>
+        </div>
+        <!-- 22. Обратить вред в пользу -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">22</span>
+                <span class="principle-name">Обратить вред в пользу</span>
+            </div>
+            <div class="principle-desc">Использовать вредные факторы для получения положительного эффекта; усилить вред до исчезновения.</div>
+            <div class="examples">
+                <span class="example-item">Ферма по разведению моли (испытание тканей) [9]</span>
+                <span class="example-item">Использование тепла трения для разогрева</span>
+            </div>
+        </div>
+        <!-- 23. Обратная связь -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">23</span>
+                <span class="principle-name">Обратная связь</span>
+            </div>
+            <div class="principle-desc">Ввести обратную связь; если есть — изменить её.</div>
+            <div class="examples">
+                <span class="example-item">Лямбда-зонд в выхлопе</span>
+                <span class="example-item">Термостат с обратной связью</span>
+            </div>
+        </div>
+        <!-- 24. Посредник -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">24</span>
+                <span class="principle-name">Посредник</span>
+            </div>
+            <div class="principle-desc">Использовать промежуточный объект-переносчик.</div>
+            <div class="examples">
+                <span class="example-item">Резиновые перчатки при работе с кислотой [9]</span>
+                <span class="example-item">Сварочная проволока-присадка</span>
+            </div>
+        </div>
+        <!-- 25. Самообслуживание -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">25</span>
+                <span class="principle-name">Самообслуживание</span>
+            </div>
+            <div class="principle-desc">Объект должен сам себя обслуживать, использовать отходы.</div>
+            <div class="examples">
+                <span class="example-item">Магазин самообслуживания [9]</span>
+                <span class="example-item">Банкомат</span>
+                <span class="example-item">Использование стружки как абсорбента</span>
+            </div>
+        </div>
+        <!-- 26. Копирование -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">26</span>
+                <span class="principle-name">Копирование</span>
+            </div>
+            <div class="principle-desc">Заменить недоступный объект его копией; использовать оптические копии.</div>
+            <div class="examples">
+                <span class="example-item">Копии картин в музеях [9]</span>
+                <span class="example-item">Фотография вместо визита [9]</span>
+                <span class="example-item">3D-модель вместо макета</span>
+            </div>
+        </div>
+        <!-- 27. Дешевая недолговечность взамен дорогой долговечности -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">27</span>
+                <span class="principle-name">Дешевая недолговечность</span>
+            </div>
+            <div class="principle-desc">Заменить дорогой объект набором дешёвых, поступившись долговечностью.</div>
+            <div class="examples">
+                <span class="example-item">Одноразовая посуда [9]</span>
+                <span class="example-item">Дешёвые ручки в пенале (дети теряют) [9]</span>
+            </div>
+        </div>
+        <!-- 28. Замена механической схемы -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">28</span>
+                <span class="principle-name">Замена механической схемы</span>
+            </div>
+            <div class="principle-desc">Заменить механическое поле оптическим, акустическим, запаховым, электрическим, магнитным.</div>
+            <div class="examples">
+                <span class="example-item">Бесконтактный измеритель (лазер)</span>
+                <span class="example-item">Электромагнитное перемешивание металла</span>
+            </div>
+        </div>
+        <!-- 29. Пневмо- и гидроконструкции -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">29</span>
+                <span class="principle-name">Пневмо- и гидроконструкции</span>
+            </div>
+            <div class="principle-desc">Вместо твердых частей использовать газообразные или жидкие (надувные, гидростатические).</div>
+            <div class="examples">
+                <span class="example-item">Надувные подушки безопасности</span>
+                <span class="example-item">Гидравлический домкрат</span>
+            </div>
+        </div>
+        <!-- 30. Гибкие оболочки и тонкие плёнки -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">30</span>
+                <span class="principle-name">Гибкие оболочки и плёнки</span>
+            </div>
+            <div class="principle-desc">Использовать гибкие оболочки, плёнки вместо объёмных конструкций.</div>
+            <div class="examples">
+                <span class="example-item">Тепличная плёнка вместо стекла</span>
+                <span class="example-item">Упаковка «термоусадочная плёнка»</span>
+            </div>
+        </div>
+        <!-- 31. Применение пористых материалов -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">31</span>
+                <span class="principle-name">Пористые материалы</span>
+            </div>
+            <div class="principle-desc">Сделать объект пористым; заполнить поры веществом.</div>
+            <div class="examples">
+                <span class="example-item">Керамический фильтр сажи</span>
+                <span class="example-item">Пенометалл для звукоизоляции</span>
+            </div>
+        </div>
+        <!-- 32. Изменение окраски -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">32</span>
+                <span class="principle-name">Изменение окраски</span>
+            </div>
+            <div class="principle-desc">Изменить цвет или прозрачность объекта или среды; использовать добавки-метки.</div>
+            <div class="examples">
+                <span class="example-item">Термохромные краски (индикатор нагрева)</span>
+                <span class="example-item">Прозрачный корпус для наблюдения</span>
+            </div>
+        </div>
+        <!-- 33. Однородность -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">33</span>
+                <span class="principle-name">Однородность</span>
+            </div>
+            <div class="principle-desc">Объекты, взаимодействующие с основным, должны быть из того же материала.</div>
+            <div class="examples">
+                <span class="example-item">Припой того же состава, что и металл</span>
+                <span class="example-item">Одинаковые материалы в трущейся паре (антифрикционные)</span>
+            </div>
+        </div>
+        <!-- 34. Отброс и регенерация частей -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">34</span>
+                <span class="principle-name">Отброс и регенерация</span>
+            </div>
+            <div class="principle-desc">Исполнившая своё назначение часть должна быть отброшена или восстановлена.</div>
+            <div class="examples">
+                <span class="example-item">Сбрасываемые ступени ракет</span>
+                <span class="example-item">Самозатачивающийся инструмент</span>
+            </div>
+        </div>
+        <!-- 35. Изменение агрегатного состояния -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">35</span>
+                <span class="principle-name">Изменение агрегатного состояния</span>
+            </div>
+            <div class="principle-desc">Изменить фазовое состояние, концентрацию, плотность, степень гибкости.</div>
+            <div class="examples">
+                <span class="example-item">Заморозка воды для извлечения монеты [9]</span>
+                <span class="example-item">Воск, меняющий твёрдость при нагреве</span>
+            </div>
+        </div>
+        <!-- 36. Фазовые переходы -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">36</span>
+                <span class="principle-name">Фазовые переходы</span>
+            </div>
+            <div class="principle-desc">Использовать явления, возникающие при фазовых переходах (теплота плавления, изменение объёма).</div>
+            <div class="examples">
+                <span class="example-item">Тепловые трубы (испарение-конденсация)</span>
+                <span class="example-item">Аккумуляторы холода на основе льда</span>
+            </div>
+        </div>
+        <!-- 37. Тепловое расширение -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">37</span>
+                <span class="principle-name">Тепловое расширение</span>
+            </div>
+            <div class="principle-desc">Использовать тепловое расширение или сжатие материалов; применять материалы с разными коэффициентами.</div>
+            <div class="examples">
+                <span class="example-item">Биметаллическая пластина в термостате</span>
+            </div>
+        </div>
+        <!-- 38. Сильные окислители -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">38</span>
+                <span class="principle-name">Сильные окислители</span>
+            </div>
+            <div class="principle-desc">Заменить обычный воздух обогащённым, кислородом, ионизированным.</div>
+            <div class="examples">
+                <span class="example-item">Кислородно-ацетиленовая сварка</span>
+                <span class="example-item">Наддув кислородом в двигателях</span>
+            </div>
+        </div>
+        <!-- 39. Инертная среда -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">39</span>
+                <span class="principle-name">Инертная среда</span>
+            </div>
+            <div class="principle-desc">Заменить обычную среду нейтральной; вести процесс в вакууме.</div>
+            <div class="examples">
+                <span class="example-item">Сварка в аргоне</span>
+                <span class="example-item">Хранение продуктов в вакуумной упаковке</span>
+            </div>
+        </div>
+        <!-- 40. Композиционные материалы -->
+        <div class="principle-card">
+            <div class="principle-header">
+                <span class="principle-num">40</span>
+                <span class="principle-name">Композиционные материалы</span>
+            </div>
+            <div class="principle-desc">Перейти от однородных к композитным материалам.</div>
+            <div class="examples">
+                <span class="example-item">Стеклопластик, углепластик</span>
+                <span class="example-item">Армированный бетон</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- РАСШИРЕННЫЙ ФОНД: ПОДПРИЁМЫ и НОВЫЕ МЕТОДИКИ -->
+    <div class="subprinciples-block">
+        <h3>➕ Подприёмы — от 40 к 160 операторам</h3>
+        <p>Каждый классический приём имеет разновидности («изотопы»). Современные исследования (Livotov, 2022) выделяют <strong>160 элементарных операторов</strong> [4]. Например, приём 1 «Дробление» включает: </p>
+        <ul class="sub-list">
+            <li>a) разделить на независимые части</li>
+            <li>b) сделать объект разборным</li>
+            <li>c) увеличить степень дробления</li>
+            <li>d) перейти к порошку / гранулам</li>
+            <li>e) использовать капиллярно-пористую структуру</li>
+        </ul>
+        <p>Аналогично каждый из 40 приёмов содержит от 2 до 6 подприёмов. В сумме это даёт более 100–160 конкретных инструментов [1][4].</p>
+    </div>
+
+    <!-- СТАНДАРТЫ (76) -->
+    <div class="standards-block">
+        <h3>📌 Стандарты на решение изобретательских задач (76)</h3>
+        <p><strong>Не просто одиночные приёмы, а устойчивые сочетания</strong>, которые гарантируют решение целого класса задач. Разработаны на основе вепольного анализа. Делятся на классы: синтез веполей, разрушение, обнаружение и т.д. [1][5].</p>
+        <ul style="columns: 2 200px; list-style: none; margin-top: 1rem;">
+            <li>🔹 1.1. Синтез веполей</li>
+            <li>🔹 1.2. Разрушение веполей</li>
+            <li>🔹 2.1. Переход к бисистемам</li>
+            <li>🔹 2.2. Переход к полисистемам</li>
+            <li>🔹 3.1. Обнаружение и измерение</li>
+            <li>🔹 4.1. Обходные стандарты</li>
+            <li>🔹 5.1. Применение ресурсов</li>
+        </ul>
+        <p style="margin-top: 1rem;">Всего <strong>76 стандартов</strong> (по версии Альтшуллера) — это «тяжёлая артиллерия» для сложных задач [5].</p>
+    </div>
+
+    <!-- ДОПОЛНИТЕЛЬНЫЕ МЕТОДИКИ -->
+    <div class="info-box" style="margin-top: 2rem;">
+        <strong>🧰 Другие инструменты фонда:</strong> таблица выбора приёмов (матрица противоречий), указатель физических эффектов, геометрических эффектов, биологических эффектов, ресурсный анализ. В сумме информационный фонд ТРИЗ насчитывает тысячи элементов, но 40 приёмов — его ядро [1][5].
+    </div>
+
+    <footer>
+        📚 Источники: Фонд Альтшуллера [1], The TRIZ Journal [3][7], Википедия [5], исследования Livotov [4].<br>
+        Каждый приём проиллюстрирован примерами из техники, менеджмента и повседневности.
+    </footer>
+</div>
+</body>
+</html>

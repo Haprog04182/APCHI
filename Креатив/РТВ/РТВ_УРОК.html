@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>РТВ · Презентация для обучения + материалы для учителя</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+            background: #eef2f7;
+            color: #1a2b3c;
+            line-height: 1.5;
+            padding: 1.5rem;
+        }
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2.5rem;
+            box-shadow: 0 30px 50px -20px rgba(0,40,60,0.3);
+            overflow: hidden;
+            padding: 2.5rem 2.2rem 3rem 2.2rem;
+            position: relative;
+        }
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(145deg, #003153, #1b5583);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.2rem;
+            border-left: 8px solid #1b5583;
+            padding-left: 1.8rem;
+        }
+        .subtitle {
+            font-size: 1.4rem;
+            color: #2e4d6e;
+            margin-bottom: 2.2rem;
+            font-weight: 300;
+            padding-left: 2.5rem;
+        }
+        .methods-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .method-card {
+            background: #ffffff;
+            border-radius: 2rem;
+            padding: 1.8rem 2.2rem;
+            border: 1px solid #d9e5f0;
+            box-shadow: 0 12px 24px -16px rgba(0,65,105,0.15);
+            transition: 0.2s;
+        }
+        .method-card:hover {
+            border-color: #8fb9d9;
+            box-shadow: 0 18px 30px -16px #1b558360;
+        }
+        .method-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #003f6f;
+            margin-bottom: 0.75rem;
+        }
+        .method-icon {
+            background: #1b5583;
+            color: white;
+            font-size: 1.4rem;
+            width: 3rem;
+            height: 3rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            box-shadow: 0 6px 12px #1b558370;
+        }
+        .method-desc {
+            background: #eff6fd;
+            padding: 0.8rem 1.8rem;
+            border-radius: 2rem;
+            margin: 0.5rem 0 1.2rem 0;
+            color: #014d80;
+            border-left: 6px solid #2a7ab0;
+            font-size: 1.1rem;
+        }
+        .examples-head {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin: 1.2rem 0 0.8rem 0;
+            color: #1d456b;
+        }
+        details.example-item {
+            display: block;
+            border-radius: 1.2rem;
+            background: #f9fcff;
+            border: 1px solid #cbdbe9;
+            margin-bottom: 0.8rem;
+            overflow: hidden;
+        }
+        details.example-item summary {
+            padding: 0.9rem 2rem 0.9rem 3.2rem;
+            font-weight: 500;
+            font-size: 1.1rem;
+            color: #0b3c61;
+            cursor: pointer;
+            list-style: none;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="%232a6f97" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>') no-repeat left 1.4rem center;
+            background-size: 1.2rem;
+            background-color: #f9fcff;
+        }
+        details.example-item[open] summary {
+            background-color: #e2edf9;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="%232a6f97" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>');
+            border-bottom: 1px solid #c5d9ec;
+        }
+        details.example-item summary::-webkit-details-marker {
+            display: none;
+        }
+        .example-answer {
+            padding: 1rem 2rem 1.2rem 3.2rem;
+            background: white;
+        }
+        .example-answer ul {
+            margin: 0.3rem 0 0 1.3rem;
+        }
+
+        /* кнопка учителя */
+        .teacher-btn-wrapper {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 2.5rem;
+        }
+        .teacher-btn {
+            background: #1b5583;
+            color: white;
+            border: none;
+            font-size: 1.3rem;
+            font-weight: 600;
+            padding: 1rem 2.5rem;
+            border-radius: 3rem;
+            cursor: pointer;
+            box-shadow: 0 10px 18px -8px #0b2f4a;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border: 2px solid transparent;
+        }
+        .teacher-btn:hover {
+            background: #0f3e62;
+            transform: scale(1.02);
+            box-shadow: 0 16px 24px -10px #0b2f4a;
+        }
+        .teacher-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* модальное окно (скрыто по умолчанию) */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,20,40,0.7);
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: white;
+            max-width: 750px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            border-radius: 2.5rem;
+            padding: 2.2rem 2.5rem;
+            box-shadow: 0 40px 70px rgba(0,20,40,0.5);
+            position: relative;
+            border: 2px solid #aac7e0;
+        }
+        .modal-close {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.8rem;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #1b5583;
+            font-weight: bold;
+            line-height: 1;
+        }
+        .modal-close:hover {
+            color: #d43f1a;
+        }
+        .teacher-manual h2 {
+            font-size: 2rem;
+            color: #003153;
+            border-bottom: 4px solid #aac7e0;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .teacher-manual h3 {
+            font-size: 1.5rem;
+            color: #1b5583;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .teacher-manual p {
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+        .teacher-manual ul {
+            margin: 0.5rem 0 1rem 1.5rem;
+        }
+        .teacher-manual li {
+            margin-bottom: 0.5rem;
+        }
+        .note {
+            background: #e5f0fa;
+            border-radius: 1.5rem;
+            padding: 1.2rem 1.8rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #1b5583;
+        }
+
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+            color: #5f7c9a;
+        }
+        @media (max-width: 700px) {
+            .presentation-container { padding: 1.5rem; }
+            .method-card { padding: 1.2rem; }
+            .method-title { font-size: 1.7rem; }
+            h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <h1>🎨 Развитие творческого воображения</h1>
+        <div class="subtitle">Шесть методов РТВ, которые превращают фантазию в инженерный инструмент</div>
+
+        <!-- Метод 1: МФО -->
+        <div class="methods-grid">
+            <div class="method-card">
+                <div class="method-title"><span class="method-icon">🔍</span> Метод фокальных объектов (МФО)</div>
+                <div class="method-desc">Перенос признаков случайных предметов на заданный объект, чтобы получить неожиданные сочетания.</div>
+                <div class="examples-head">Примеры (нажмите, чтобы раскрыть идеи)</div>
+                <details class="example-item">
+                    <summary><strong>Часы</strong> + ёлка?</summary>
+                    <div class="example-answer">
+                        🌲 «Зелёные» часы на солнечной батарее · 🕒 Часы с колючим дизайном · 🎄 Праздничные часы с мишурой.
+                    </div>
+                </details>
+                <details class="example-item">
+                    <summary><strong>Дверь</strong> + море?</summary>
+                    <div class="example-answer">
+                        🌊 Дверь-волна (гнутая форма) · 🐠 Дверь-аквариум · 💡 Подсветка цвета морской волны.
+                    </div>
+                </details>
+            </div>
+
+            <!-- Метод 2: Морфологический анализ -->
+            <div class="method-card">
+                <div class="method-title"><span class="method-icon">📊</span> Морфологический анализ</div>
+                <div class="method-desc">Объект раскладывается на оси признаков, затем перебираются все сочетания вариантов.</div>
+                <details class="example-item">
+                    <summary>Упаковка: форма (шар/куб/цилиндр), материал (стекло/пластик/фольга), открывание (крышка/клапан/отрыв)?</summary>
+                    <div class="example-answer">
+                        🥫 Куб из фольги с клапаном (тетрапак) · 🔮 Стеклянный шар с отрывным горлышком · 📦 Цилиндр с крышкой-дозатором.
+                    </div>
+                </details>
+                <details class="example-item">
+                    <summary>Обувь: материал верха, подошва, фиксация?</summary>
+                    <div class="example-answer">
+                        👟 Текстильные кроссовки + рельефная подошва + молния · 👠 Кожа + каблук + липучка · 🥾 Мембрана + сплошная + шнурки.
+                    </div>
+                </details>
+            </div>
+
+            <!-- Метод 3: Маленькие человечки (ММЧ) -->
+            <div class="method-card">
+                <div class="method-title"><span class="method-icon">🧑‍🤝‍🧑</span> Метод маленьких человечков</div>
+                <div class="method-desc">Моделирование физических процессов с помощью воображаемых человечков.</div>
+                <details class="example-item">
+                    <summary>Почему вода жидкая, а лёд твёрдый?</summary>
+                    <div class="example-answer">
+                        💧 Вода: человечки скользят, держась за руки · ❄️ Лёд: стоят плотно, крепко взявшись · 💨 Пар: разбежались.
+                    </div>
+                </details>
+                <details class="example-item">
+                    <summary>Как работает эмульгатор в майонезе?</summary>
+                    <div class="example-answer">
+                        🧈 Человечки масла и воды не дружат. Появляются человечки-миротворцы (лецитин), которые держат тех и других.
+                    </div>
+                </details>
+            </div>
+
+            <!-- Метод 4: Оператор РВС -->
+            <div class="method-card">
+                <div class="method-title"><span class="method-icon">📏⏱️💰</span> Оператор РВС (Размер — Время — Стоимость)</div>
+                <div class="method-desc">Изменяем параметры до фантастических пределов, чтобы сломать стереотип.</div>
+                <details class="example-item">
+                    <summary>Уборка листвы: листья размером со стадион?</summary>
+                    <div class="example-answer">Резать лазером, использовать гигантские воздуходувки.</div>
+                </details>
+                <details class="example-item">
+                    <summary>Листопад длится 1 секунду?</summary>
+                    <div class="example-answer">Мгновенное сдувание, взрывной сбор.</div>
+                </details>
+            </div>
+
+            <!-- Метод 5: Синектика (аналогии) -->
+            <div class="method-card">
+                <div class="method-title"><span class="method-icon">🧩</span> Синектика — аналогии</div>
+                <div class="method-desc">Прямая, личная, символическая, фантастическая аналогия.</div>
+                <details class="example-item">
+                    <summary>Прямая аналогия для двигателя лодки</summary>
+                    <div class="example-answer">🦑 Кальмар (реактивное движение) · 🦆 Утка (перепонки) · 🐍 Змея (извивы).</div>
+                </details>
+                <details class="example-item">
+                    <summary>Личная аналогия: представь себя винтом лодки</summary>
+                    <div class="example-answer">Чувствую сопротивление, кавитацию — можно изменить форму, сделать эластичным.</div>
+                </details>
+            </div>
+
+            <!-- Метод 6: Снежный ком -->
+            <div class="method-card">
+                <div class="method-title"><span class="method-icon">❄️</span> Метод снежного кома</div>
+                <div class="method-desc">Последовательное наращивание фантастических свойств.</div>
+                <details class="example-item">
+                    <summary>Карандаш: сам затачивается → ...</summary>
+                    <div class="example-answer">1. Сам затачивается. 2. Накапливает стружку. 3. Перерабатывает стружку → вечный карандаш.</div>
+                </details>
+                <details class="example-item">
+                    <summary>Зонт: сам определяет дождь → ...</summary>
+                    <div class="example-answer">1. Определяет дождь. 2. Сам вылетает из сумки. 3. Отталкивает капли обратно в тучу.</div>
+                </details>
+            </div>
+        </div>
+
+        <!-- Кнопка для вызова материалов учителя -->
+        <div class="teacher-btn-wrapper">
+            <button class="teacher-btn" id="openTeacherModal">📘 Для учителя · методические рекомендации</button>
+        </div>
+
+        <footer>Нажмите на любой пример, чтобы увидеть идеи. Используйте кнопку для доступа к сценарию занятия.</footer>
+    </div>
+
+    <!-- Модальное окно с текстом для учителя -->
+    <div class="modal-overlay" id="teacherModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeTeacherModal">&times;</button>
+            <div class="teacher-manual">
+                <h2>🧑‍🏫 Материалы для учителя</h2>
+                <p><strong>Цель занятия:</strong> познакомить учащихся с основными методами РТВ, научить применять их для генерации нестандартных идей и преодоления инерции мышления.</p>
+                
+                <h3>📌 Структура урока (45–60 мин)</h3>
+                <ul>
+                    <li><strong>Введение (5 мин):</strong> Что такое воображение и зачем его развивать? Рассказать о РТВ как части ТРИЗ.</li>
+                    <li><strong>Обзор методов (20 мин):</strong> Показать на слайдах каждый метод, привести 1–2 ярких примера. Использовать интерактив — попросить учеников предложить свои варианты до того, как откроется ответ.</li>
+                    <li><strong>Практическая работа (15 мин):</strong> Разделить класс на группы. Каждая группа получает один метод и простую задачу (например, «улучшить школьную парту» или «придумать новый вид транспорта»). Группы генерируют идеи, используя свой метод.</li>
+                    <li><strong>Презентация и обсуждение (10 мин):</strong> Группы кратко представляют идеи. Учитель акцентирует, как метод помог найти решение.</li>
+                </ul>
+
+                <h3>🗣️ Рекомендации по каждому методу</h3>
+                <ul>
+                    <li><strong>МФО:</strong> Предложите ученикам случайные слова (книга, лампа, дерево) и объект (например, «ручка»). Пусть сами попробуют перенести признаки. Подчеркните, что необычные сочетания — это толчок к идее.</li>
+                    <li><strong>Морфологический анализ:</strong> На доске постройте простую таблицу (2–3 оси). Например, для «часов»: форма (круг, квадрат, сердце), материал (пластик, дерево, камень), крепление (ремень, присоска, магнит). Перебор даёт много гибридов.</li>
+                    <li><strong>ММЧ:</strong> Используйте для объяснения физики (лёд-вода, диффузия). Попросите учеников изобразить человечками, как течёт вода по трубе, как растворяется сахар.</li>
+                    <li><strong>РВС:</strong> Возьмите бытовую проблему (например, «мытьё посуды»). Мысленно уменьшите размер тарелки до миллиметра — как мыть? Увеличьте время высыхания до года — что изменится? Это развивает гибкость.</li>
+                    <li><strong>Синектика:</strong> Учите искать аналогии в природе, технике, искусстве. Например, для задачи «создать новый упаковочный материал» спросите: как природа защищает орех? (скорлупа, кожура).</li>
+                    <li><strong>Снежный ком:</strong> Упражнение «Цепочка чудес»: начинаем с обычного предмета, добавляем одно фантастическое свойство, потом отталкиваемся от него и добавляем следующее. Хорошо для раскрепощения фантазии.</li>
+                </ul>
+
+                <div class="note">
+                    <strong>❗ Важно:</strong> Не критикуйте идеи на этапе генерации. Цель — количество, а не качество. Даже абсурдные мысли могут навести на полезное решение.
+                </div>
+
+                <h3>📝 Примеры для самостоятельной работы</h3>
+                <ul>
+                    <li>Придумать новый дизайн стула (МФО).</li>
+                    <li>Спроектировать многофункциональный рюкзак (морфологический анализ).</li>
+                    <li>Объяснить, почему резина тянется, используя ММЧ.</li>
+                    <li>Как изменится город, если люди станут ростом 1 метр? (РВС).</li>
+                </ul>
+
+                <h3>📚 Дополнительные материалы</h3>
+                <p>Рекомендуемая литература: Г. Альтшуллер «Творчество как точная наука», книги по ТРИЗ для детей. На сайте metodolog.ru есть картотека примеров.</p>
+                <p>Для углублённого изучения: использовать полные списки приёмов и вепольный анализ.</p>
+
+                <p style="margin-top: 2rem;"><em>Удачи на уроке! Пусть воображение ваших учеников найдёт новые грани.</em></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Открытие и закрытие модального окна
+        const modal = document.getElementById('teacherModal');
+        const openBtn = document.getElementById('openTeacherModal');
+        const closeBtn = document.getElementById('closeTeacherModal');
+
+        openBtn.addEventListener('click', () => {
+            modal.style.display = 'flex';
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
